@@ -13,7 +13,7 @@ export const MuiTypography = () => {
         <Typography variant='subtitle1'>Sub Title 1</Typography>
         <Typography variant='subtitle2'>Sub Title 2</Typography>
 
-        <Typography variant='body1'>Veniam voluptate nisi fugiat mollit id nisi voluptate.</Typography>
+        <Typography variant='body1'>lorem</Typography>
         <Typography variant='body2'>Eiusmod qui laboris veniam fugiat ea voluptate exercitation incididunt non. Labore excepteur anim quis aliqua et eiusmod eiusmod. Minim deserunt tempor in cillum ea incididunt ea.</Typography>
 
     </div>
