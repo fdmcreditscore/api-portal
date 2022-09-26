@@ -1,53 +1,66 @@
 import './sidebar.scss'
-import DashboardIcon from '@mui/icons-material/Dashboard'
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import StoreIcon from "@mui/icons-material/Store";
-import InsertChartIcon from "@mui/icons-material/InsertChart";
-import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
-import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
-import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import {  List, 
+          ListItem, Typography, Divider,
+          ListItemButton, 
+          ListItemIcon, 
+          ListItemText } from '@mui/material';
 
-const Sidebar = () => {
+import MailIcon from '@mui/icons-material/Mail';
+import { Bungalow } from '@mui/icons-material';
+import LightbulbSharpIcon from '@mui/icons-material/LightbulbSharp';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+
+const Sidebar = ({setActive}) => {
   return (
-    <div className='sidebar'>
-      <div className='top'>
-        <span className='logo'>lamadmin</span>
-      </div>
-      <hr />
-      <div className='center'>
-        <ul>
-          <p className='title'>MAIN</p>
-          <li><DashboardIcon className='icon' /><span>Dashboard</span></li>
+    <>
+      <Typography align='center' variant="h6" component="div">Introduction</Typography>
 
-          <p className='title'>LISTS</p>
-          <li><PersonOutlineIcon /><span>Users</span></li>
-          <li><StoreIcon className="icon" /><span>Products</span></li>
-          <li><CreditCardIcon className="icon" /><span>Orders</span></li>
-          <li><LocalShippingIcon className="icon" /><span>Delivery</span></li>
+      <List>
+        <ListItem alignItems="flex-start" key='Beranda' disablePadding> 
+                  <ListItemButton onClick={() => setActive('Beranda')}>
+                      <ListItemIcon><Bungalow color='primary' size='sm'/> </ListItemIcon>
+                      <Typography  sx={{marginLeft: 1}} variant='h6' color='primary'>Beranda</Typography>
+                     
+                  </ListItemButton>
+        </ListItem>
+        <ListItem key='Service Info' disablePadding> 
+                  <ListItemButton onClick={() => setActive('Service Info')}>
+                      <ListItemIcon><LightbulbSharpIcon /></ListItemIcon>
+                      <Typography variant='h6'>Service Info</Typography>
+                  </ListItemButton>
+        </ListItem>
 
-          <p className="title">USEFUL</p>
-          <li><InsertChartIcon className="icon" /><span>Stats</span></li>
-          <li><NotificationsNoneIcon className="icon" /><span>Notification</span></li>
-    
-          <p className="title">SERVICE</p>
-          <li><SettingsSystemDaydreamOutlinedIcon className="icon" /><span>System Health</span></li>
-          <li><PsychologyOutlinedIcon className="icon" /><span>Logs</span></li>
-          <li><SettingsApplicationsIcon className="icon" /><span>Settings</span></li>
+        <ListItem key='Partner Registration' alignItems="center" disablePadding> 
+                  <ListItemButton 
+                      onClick={() => setActive('Partner Registration')}>
+                      <ListItemIcon><AppRegistrationIcon /></ListItemIcon>
+                      <ListItemText disableGutters primary='Partner Registration'></ListItemText>
+                  </ListItemButton>
+        </ListItem>
 
-          <p className="title">USER</p>
-          <li><AccountCircleOutlinedIcon className="icon" /><span>Profile</span></li>
-          <li><ExitToAppIcon className="icon" /><span>Logout</span></li>
+        <ListItem key='Monitoring' disablePadding> 
+                  <ListItemButton onClick={() => setActive('Monitoring')}>
+                      <ListItemIcon><MonitorHeartIcon /></ListItemIcon>
+                      <Typography variant='h6'> Monitor</Typography>
+                  </ListItemButton>
+        </ListItem>
 
-        </ul>
-      </div>
+      </List>
+      <Divider />
 
-      <div className='bottom'>color options</div>
-    </div>
+      <Typography align='center' variant="h6" component="div">Developer Area</Typography>
+      <List className='list'>
+          {['API Specs', 'Sand Box'].map((text,index) => (
+              <ListItem key={index} disablePadding> 
+                  <ListItemButton onClick={() => setActive(text)}>
+                      <ListItemIcon><MailIcon /></ListItemIcon>
+                      <span className='spantext'>{text}</span>
+                  </ListItemButton>
+              </ListItem>
+          ))}
+      </List>
+    </>
   )
 }
 

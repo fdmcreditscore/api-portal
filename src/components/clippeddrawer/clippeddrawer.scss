@@ -1,0 +1,20 @@
+.list {
+
+    ListItem {
+        ListItemButton {
+            ListItemText {
+                font-size: 24px;
+            }
+            
+            span {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+.spantext {
+    font-size: 20px;
+    font-weight: 600;
+    color: cornflowerblue;
+}
