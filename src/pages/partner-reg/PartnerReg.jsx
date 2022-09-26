@@ -1,17 +1,15 @@
 import React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
 import {Container, Box, Stack, Button, TextField} from '@mui/material';
 
 const PartnerReg = () => {
   return (
     <div>
-      <CssBaseline />
       <Container fixed>
 
         <Toolbar />
-        <Typography paragraph>Ya ini halaman Registrasi Partner </Typography>
+        <Typography paragraph>Ya ini halaman registrasi calon customer </Typography>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non

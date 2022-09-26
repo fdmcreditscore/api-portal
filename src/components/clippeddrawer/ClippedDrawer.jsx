@@ -8,7 +8,8 @@ import DeveloperReg from '../../pages/dev-reg/DeveloperReg';
 import Monitor from '../../pages/monitor/Monitor';
 import Sandbox from '../../pages/sandbox/Sandbox';
 import ServiceInfo from '../../pages/service-info/ServiceInfo';
-import ApiSpecs from '../../pages/api/ApiSpecs';
+import Price from '../../pages/price/Price';
+import Report from '../../pages/report/Report';
 import './clippeddrawer.scss'
 import Sidebar from '../sidebar/Sidebar';
 
@@ -34,15 +35,17 @@ const ClippedDrawer = () => {
                 return <Beranda />;
             case 'Service Info':
                 return <ServiceInfo />;
-            case 'Partner Registration':
+            case 'Customer Registration':
                 return <PartnerReg />;
-            case 'API Specs':
-                return <ApiSpecs />;
+            case 'Skema Harga':
+                return <Price />;
             case 'Monitoring':
                 return <Monitor />;
             case 'Developer Register':
                 return <DeveloperReg />;
-            case 'Sand Box':
+            case 'Report':
+                return <Report />;
+            case 'Sandbox':
                 return <Sandbox />;
             default:
                 return <Beranda />;

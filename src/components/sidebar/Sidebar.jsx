@@ -1,64 +1,72 @@
+import React from 'react';
 import './sidebar.scss'
 import {  List, 
-          ListItem, Typography, Divider,
+          Typography, Divider,
           ListItemButton, 
-          ListItemIcon, 
-          ListItemText } from '@mui/material';
+          ListItemIcon } from '@mui/material';
 
-import MailIcon from '@mui/icons-material/Mail';
-import { Bungalow } from '@mui/icons-material';
-import LightbulbSharpIcon from '@mui/icons-material/LightbulbSharp';
+import { Bungalow, LightbulbSharp } from '@mui/icons-material';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import SmartScreenIcon from '@mui/icons-material/SmartScreen';
 
 const Sidebar = ({setActive}) => {
+
+  const [selectedIndex, setSelectedIndex] = React.useState('Beranda');
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+    setActive(index);
+  };
+
   return (
     <>
       <Typography align='center' variant="h6" component="div">Introduction</Typography>
 
       <List>
-        <ListItem alignItems="flex-start" key='Beranda' disablePadding> 
-                  <ListItemButton onClick={() => setActive('Beranda')}>
-                      <ListItemIcon><Bungalow color='primary' size='sm'/> </ListItemIcon>
-                      <Typography  sx={{marginLeft: 1}} variant='h6' color='primary'>Beranda</Typography>
-                     
-                  </ListItemButton>
-        </ListItem>
-        <ListItem key='Service Info' disablePadding> 
-                  <ListItemButton onClick={() => setActive('Service Info')}>
-                      <ListItemIcon><LightbulbSharpIcon /></ListItemIcon>
-                      <Typography variant='h6'>Service Info</Typography>
-                  </ListItemButton>
-        </ListItem>
+        <ListItemButton selected={selectedIndex==='Beranda'} 
+                        onClick={(event) => handleListItemClick(event, 'Beranda')}>
+            <ListItemIcon> <Bungalow/> </ListItemIcon>
+            <Typography variant='h6'>Beranda</Typography>
+        </ListItemButton>
 
-        <ListItem key='Partner Registration' alignItems="center" disablePadding> 
-                  <ListItemButton 
-                      onClick={() => setActive('Partner Registration')}>
-                      <ListItemIcon><AppRegistrationIcon /></ListItemIcon>
-                      <ListItemText disableGutters primary='Partner Registration'></ListItemText>
-                  </ListItemButton>
-        </ListItem>
+        <ListItemButton selected={selectedIndex==='Service Info'} 
+                        onClick={(event) => handleListItemClick(event, 'Service Info')}>
+            <ListItemIcon><LightbulbSharp /></ListItemIcon>
+            <Typography variant='h6'>Service Info</Typography>
+        </ListItemButton>
 
-        <ListItem key='Monitoring' disablePadding> 
-                  <ListItemButton onClick={() => setActive('Monitoring')}>
-                      <ListItemIcon><MonitorHeartIcon /></ListItemIcon>
-                      <Typography variant='h6'> Monitor</Typography>
-                  </ListItemButton>
-        </ListItem>
+        <ListItemButton selected={selectedIndex==='Skema Harga'} 
+                        onClick={(event) => handleListItemClick(event, 'Skema Harga')}>
+            <ListItemIcon><LightbulbSharp /></ListItemIcon>
+            <Typography variant='h6'>Skema Harga</Typography>
+        </ListItemButton>
 
-      </List>
-      <Divider />
+        <ListItemButton selected={selectedIndex==='Customer Registration'} 
+                        onClick={(event) => handleListItemClick(event, 'Customer Registration')}>
+            <ListItemIcon><AppRegistrationIcon  /></ListItemIcon>
+            <Typography variant='h6'>Customer Registration</Typography>
+        </ListItemButton>
 
-      <Typography align='center' variant="h6" component="div">Developer Area</Typography>
-      <List className='list'>
-          {['API Specs', 'Sand Box'].map((text,index) => (
-              <ListItem key={index} disablePadding> 
-                  <ListItemButton onClick={() => setActive(text)}>
-                      <ListItemIcon><MailIcon /></ListItemIcon>
-                      <span className='spantext'>{text}</span>
-                  </ListItemButton>
-              </ListItem>
-          ))}
+        <Divider />
+
+        <ListItemButton selected={selectedIndex==='Monitoring'} 
+                        onClick={(event) => handleListItemClick(event, 'Monitoring')}>
+          <ListItemIcon><MonitorHeartIcon /></ListItemIcon>
+          <Typography variant='h6'> Monitor</Typography>
+        </ListItemButton>
+
+        <ListItemButton selected={selectedIndex==='Report'} 
+                        onClick={(event) => handleListItemClick(event, 'Report')}>
+          <ListItemIcon><MonitorHeartIcon /></ListItemIcon>
+          <Typography variant='h6'>Report</Typography>
+        </ListItemButton>
+
+        <ListItemButton selected={selectedIndex==='Sandbox'} 
+                        onClick={(event) => handleListItemClick(event, 'Sandbox')}>
+          <ListItemIcon><SmartScreenIcon /></ListItemIcon>
+          <Typography variant='h6' >Sandbox</Typography>
+        </ListItemButton>
+
       </List>
     </>
   )
