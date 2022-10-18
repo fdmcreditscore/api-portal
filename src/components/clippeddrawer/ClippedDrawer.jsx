@@ -10,6 +10,7 @@ import Sandbox from '../../pages/sandbox/Sandbox';
 import ServiceInfo from '../../pages/service-info/ServiceInfo';
 import Price from '../../pages/price/Price';
 import Report from '../../pages/report/Report';
+import RegistrationProcess from '../../pages/registration-process/RegistrationProcess'
 import './clippeddrawer.scss'
 import Sidebar from '../sidebar/Sidebar';
 
@@ -45,10 +46,12 @@ const ClippedDrawer = () => {
                 return <DeveloperReg />;
             case 'Report':
                 return <Report />;
+            case 'NewCustomer':
+                return <RegistrationProcess />;
             case 'Sandbox':
                 return <Sandbox />;
             default:
-                return <Beranda />;
+            return <Beranda />;
         }
     }
 

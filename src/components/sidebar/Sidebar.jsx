@@ -67,6 +67,14 @@ const Sidebar = ({setActive}) => {
           <Typography variant='h6' >Sandbox</Typography>
         </ListItemButton>
 
+        <Divider />
+
+        <ListItemButton selected={selectedIndex==='NewCustomer'} 
+                        onClick={(event) => handleListItemClick(event, 'NewCustomer')}>
+          <ListItemIcon><MonitorHeartIcon /></ListItemIcon>
+          <Typography variant='h6'>Registration Process</Typography>
+        </ListItemButton>
+
       </List>
     </>
   )
