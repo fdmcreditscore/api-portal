@@ -24,7 +24,7 @@ const CustomerList = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [customers, setCustomers] = useState([])
   useEffect(() => {
-    fetch('https://jsonplaceholder1.typicode.com/posts?_limit=10')
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=10')
       .then((response) => response.json())
       .then((data) => {
         console.log(data)

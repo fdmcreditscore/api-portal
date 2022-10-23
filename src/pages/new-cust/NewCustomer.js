@@ -33,7 +33,6 @@ const NewCustomer = () => {
       .then((data) => {
         console.log(data)
         setRegistrations(data)
-        console.log('ada ' + data.length)
       })
       .catch((err) => {
         console.log(err.message)
