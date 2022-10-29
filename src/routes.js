@@ -7,6 +7,8 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 const NewCustomer = React.lazy(() => import('./pages/new-cust/NewCustomer'))
 const Registration = React.lazy(() => import('./pages/registration/Registration'))
 const CustomerList = React.lazy(() => import('./pages/customer-list/CustomerList'))
+const CustomizeApi = React.lazy(() => import('./pages/customize-api/CustomizeApi'))
+const CustomerDashboard = React.lazy(() => import('./pages/customer-dashboard/CustomerDashboard'))
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -102,6 +104,8 @@ const routes = [
   { path: '/pages/registration', name: 'Registration', element: Registration },
   { path: '/pages/newcustomer', name: 'NewCustomer', element: NewCustomer },
   { path: '/pages/customer-list', name: 'CustomerList', element: CustomerList },
+  { path: '/pages/customize-api', name: 'CustomizeApi', element: CustomizeApi },
+  { path: '/pages/customer-dashboard', name: 'CustomerDashboard', element: CustomerDashboard },
 ]
 
 export default routes

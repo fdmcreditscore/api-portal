@@ -30,14 +30,20 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'Customer Dashboard',
+    to: '/pages/customer-dashboard',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
     name: 'Submit Registration',
     to: '/pages/registration',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Customer Dashboard',
-    to: '/pages/registration',
+    name: 'Customize API',
+    to: '/pages/customize-api',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
