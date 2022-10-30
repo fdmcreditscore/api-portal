@@ -9,6 +9,7 @@ const Registration = React.lazy(() => import('./pages/registration/Registration'
 const CustomerList = React.lazy(() => import('./pages/customer-list/CustomerList'))
 const CustomizeApi = React.lazy(() => import('./pages/customize-api/CustomizeApi'))
 const CustomerDashboard = React.lazy(() => import('./pages/customer-dashboard/CustomerDashboard'))
+const InternalDashboard = React.lazy(() => import('./pages/internal-dashboard/InternalDashboard'))
 
 // Icons
 const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
@@ -30,6 +31,7 @@ const routes = [
   { path: '/pages/customer-list', name: 'CustomerList', element: CustomerList },
   { path: '/pages/customize-api', name: 'CustomizeApi', element: CustomizeApi },
   { path: '/pages/customer-dashboard', name: 'CustomerDashboard', element: CustomerDashboard },
+  { path: '/pages/internal-dashboard', name: 'InternalDashboard', element: InternalDashboard },
 ]
 
 export default routes
