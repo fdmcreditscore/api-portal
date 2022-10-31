@@ -6,8 +6,6 @@ import {
   CCardBody,
   CContainer,
   CCardHeader,
-  CListGroup,
-  CListGroupItem,
   CButton,
   CCardFooter,
   CModal,
@@ -19,7 +17,13 @@ import {
   CCol,
   CRow,
   CForm,
-  // DocsLink,
+  CTableDataCell,
+  CProgress,
+  CTable,
+  CTableBody,
+  CTableRow,
+  CTableHeaderCell,
+  CTableHead,
 } from '@coreui/react'
 
 const CustomizeApi = () => {
@@ -61,7 +65,7 @@ const CustomizeApi = () => {
   }
 
   useEffect(() => {
-    fetch('http://localhost:8900/mgmt/v1/customers/AQ82290/modulset')
+    fetch('http://latitude:9000/mgmt/v1/customers/AQ82290/modulset')
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -159,40 +163,80 @@ const CustomizeApi = () => {
         <CCard className="mb-4">
           <CCardHeader>Custom API Set</CCardHeader>
           <CCardBody>
-            <CListGroup>
-              {modules.map((modul) => {
-                return (
-                  <CListGroupItem
-                    component="button"
-                    key={modul.modulsetCode}
-                    onClick={() => {
-                      let registeredApi = modul.moduls.map((n) => n.modulName)
-                      let clonedApiList = cloneDeep(apiList)
-                      let newApiList = clonedApiList.map((n) => {
-                        n.include = registeredApi.includes(n.name) ? true : false
-                        return n
-                      })
-                      setApisChooseState(newApiList)
-                      setModalVisible(true)
-                    }}
-                  >
-                    {modul.endpoint}
-                  </CListGroupItem>
-                )
-              })}
-            </CListGroup>
-            <CCardFooter>
-              <CButton
-                color="info"
-                onClick={() => {
-                  setApisChooseState(cloneDeep(apiList))
-                  setModalVisible(true)
-                }}
-              >
-                Add New Custom API Set
-              </CButton>
-            </CCardFooter>
+            <CTable align="middle" className="mb-0 border" responsive>
+              <CTableHead color="light">
+                <CTableRow>
+                  <CTableHeaderCell>Endpoint</CTableHeaderCell>
+                  <CTableHeaderCell className="text-center">API</CTableHeaderCell>
+                  <CTableHeaderCell>Running Month Usage</CTableHeaderCell>
+                  <CTableHeaderCell>Activity</CTableHeaderCell>
+                </CTableRow>
+              </CTableHead>
+              <CTableBody>
+                {modules.map((item, index) => (
+                  <CTableRow v-for="item in tableItems" key={index}>
+                    <CTableDataCell>
+                      <div>
+                        <CButton
+                          shape="rounded-start"
+                          color="link"
+                          onClick={() => {
+                            let registeredApi = item.moduls.map((n) => n.modulName)
+                            let clonedApiList = [...apiList]
+                            let newApiList = clonedApiList.map((n) => {
+                              n.include = registeredApi.includes(n.name) ? true : false
+                              return n
+                            })
+                            setApisChooseState(newApiList)
+                            setModalVisible(true)
+                          }}
+                        >
+                          {item.endpoint}
+                        </CButton>
+                      </div>
+                      <div className="small text-medium-emphasis">Registered: Nov 1, 2022</div>
+                    </CTableDataCell>
+                    <CTableDataCell className="text-center">
+                      {item.moduls.map((api, apidx) => (
+                        <div key={apidx}>{api.modulName}</div>
+                      ))}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <div className="clearfix">
+                        <div className="float-start">
+                          <strong>50%</strong>
+                        </div>
+                        <div className="float-end">
+                          <small className="text-medium-emphasis">
+                            Jun 11, 2021 - Jul 10, 2021
+                          </small>
+                        </div>
+                      </div>
+                      <CProgress thin color="success" value="40" />
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <div className="small text-medium-emphasis">Last login</div>
+                      <strong>5 minutes ago</strong>
+                    </CTableDataCell>
+                  </CTableRow>
+                ))}
+              </CTableBody>
+            </CTable>
           </CCardBody>
+
+          <br />
+
+          <CCardFooter>
+            <CButton
+              color="info"
+              onClick={() => {
+                setApisChooseState(cloneDeep(apiList))
+                setModalVisible(true)
+              }}
+            >
+              Add New Custom API Set
+            </CButton>
+          </CCardFooter>
         </CCard>
       </CContainer>
     </div>
