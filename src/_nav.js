@@ -67,7 +67,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'API Call Usage',
-    to: '/pages/customer-list',
+    to: '/pages/apicall-history',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
 ]

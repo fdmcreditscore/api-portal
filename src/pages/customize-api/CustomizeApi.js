@@ -65,7 +65,7 @@ const CustomizeApi = () => {
   }
 
   useEffect(() => {
-    fetch('http://latitude:9000/mgmt/v1/customers/AQ82290/modulset')
+    fetch('http://latitude:9000/mgmt/v1/customers/SUAD05706/modulset')
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
