@@ -43,33 +43,39 @@ const _nav = [
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
-    component: CNavTitle,
-    name: 'Internal Administration',
-  },
-  {
     component: CNavItem,
-    name: 'Internal Dashboard',
-    to: '/pages/internal-dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'New Customer',
-    to: '/pages/newcustomer',
+    name: 'API Call',
+    to: '/pages/api-caller',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Customer List',
-    to: '/pages/customer-list',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'API Call Usage',
-    to: '/pages/apicall-history',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Internal Administration',
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Internal Dashboard',
+  //   to: '/pages/internal-dashboard',
+  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'New Customer',
+  //   to: '/pages/newcustomer',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Customer List',
+  //   to: '/pages/customer-list',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'API Call Usage',
+  //   to: '/pages/apicall-history',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
 ]
 
 export default _nav
