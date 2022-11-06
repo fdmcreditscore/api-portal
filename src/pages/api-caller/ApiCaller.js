@@ -22,7 +22,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilUser } from '@coreui/icons'
 
-const CustomerDashboard = () => {
+const ApiCaller = () => {
   const [modalVisible, setModalVisible] = useState(false)
   const [customers, setCustomers] = useState([])
   useEffect(() => {
@@ -135,4 +135,4 @@ const CustomerDashboard = () => {
   )
 }
 
-export default CustomerDashboard
+export default ApiCaller
