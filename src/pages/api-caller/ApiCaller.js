@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { apiList } from './api-list.js'
 import {
   CButton,
   CCard,
@@ -17,119 +18,99 @@ import {
   CRow,
   CFormInput,
   CFormLabel,
-  // DocsLink,
+  CFormCheck,
+  CForm,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilUser } from '@coreui/icons'
 
 const ApiCaller = () => {
+  const cloneDeep = require('lodash.clonedeep')
   const [modalVisible, setModalVisible] = useState(false)
-  const [customers, setCustomers] = useState([])
-  useEffect(() => {
-    fetch('http://localhost:8900/mgmt/v1/customers/AQ82290')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setCustomers(data)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  }, [])
+  const [apisChooseState, setApisChooseState] = useState(cloneDeep(apiList))
 
-  function handleClick(e) {
-    e.preventDefault()
-    console.log('click')
+  const handleChkOnChange = (e) => {
+    let apis = apisChooseState.map((element) => {
+      element.include = element.name === e.target.id ? !element.include : element.include
+      return element
+    })
+    setApisChooseState(apis)
   }
+
   return (
-    <div className="bg-light min-vh-100 d-flex flex-row align-items-top">
-      <CModal
-        alignment="center"
-        backdrop="static"
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-      >
-        <CModalHeader>
-          <CModalTitle>New Customer Confirmation</CModalTitle>
-        </CModalHeader>
-        <CModalBody>
-          <h5>Registration Information</h5>
-          <CContainer>
-            <CRow className="align-items-start">
-              <CCol>Instansi</CCol>
-              <CCol>One of three columns</CCol>
-            </CRow>
-            <CRow className="align-items-start">
-              <CCol>Address</CCol>
-              <CCol>One of three columns</CCol>
-            </CRow>
-            <CRow className="align-items-start">
-              <CCol>Email</CCol>
-              <CCol>One of three columns</CCol>
-            </CRow>
-          </CContainer>
-        </CModalBody>
-        <CModalFooter>
-          <CButton color="secondary" onClick={() => setModalVisible(false)}>
-            Cancel
-          </CButton>
-          <CButton color="primary">New Customer</CButton>
-        </CModalFooter>
-      </CModal>
+    <div className="bg-light min-vh-80 d-flex flex-row align-items-top">
       <CContainer>
-        <CCard className="mb-4">
-          <CCardHeader>Customer List</CCardHeader>
-          <CCardBody>
-            <CRow className="mb-3">
-              <CFormLabel className="col-sm-2 col-form-label">Instansi</CFormLabel>
-              <CCol sm={10}>
-                <CFormInput
-                  type="text"
-                  id="Instansi"
-                  defaultValue={customers.instansi}
-                  readOnly
-                  plainText
-                />
-              </CCol>
-            </CRow>
-            <CRow className="mb-3">
-              <CFormLabel className="col-sm-2 col-form-label">Client Id</CFormLabel>
-              <CCol sm={10}>
-                <CFormInput
-                  type="text"
-                  id="clientId"
-                  defaultValue={customers.clientId}
-                  readOnly
-                  plainText
-                />
-              </CCol>
-            </CRow>
-            <CRow className="mb-3">
-              <CFormLabel className="col-sm-2 col-form-label">Email Address</CFormLabel>
-              <CCol sm={10}>
-                <CFormInput
-                  type="text"
-                  id="emailAddress"
-                  defaultValue={customers.emailAddress}
-                  readOnly
-                  plainText
-                />
-              </CCol>
-            </CRow>
-            <CRow className="mb-3">
-              <CFormLabel className="col-sm-2 col-form-label">Saldo Balance</CFormLabel>
-              <CCol sm={10}>
-                <CFormInput
-                  type="text"
-                  id="Balance"
-                  defaultValue={customers.lastBalance}
-                  readOnly
-                  plainText
-                />
-              </CCol>
-            </CRow>
-          </CCardBody>
-        </CCard>
+        <CForm>
+          <CRow className="mb-3">
+            <CCol sm={10}>
+              <CCard className="mb-4">
+                <CCardHeader>Input Data Customer</CCardHeader>
+                <CCardBody>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-2 col-form-label">No MSISDN</CFormLabel>
+                    <CCol sm={10}>
+                      <CFormInput
+                        type="text"
+                        placeholder="No MSISDN"
+                        aria-label="default input example"
+                      />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-2 col-form-label">No KTP</CFormLabel>
+                    <CCol sm={10}>
+                      <CFormInput
+                        type="text"
+                        placeholder="No KTP"
+                        aria-label="default input example"
+                      />
+                    </CCol>
+                  </CRow>
+                </CCardBody>
+              </CCard>
+            </CCol>
+          </CRow>
+          <CRow className="mb-3">
+            <CCol>
+              <CCard className="mb-4">
+                <CCardHeader>Parameter Pencarian: Telco Profile</CCardHeader>
+                <CCardBody>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-2 col-form-label">Options</CFormLabel>
+                    <CCol sm={10} onChange={handleChkOnChange}>
+                      <CFormCheck id="telco:valid" label="check Valid" />
+                      <CFormCheck id="telco:active" label="check Active" />
+                      <CFormCheck id="telco:jeniskartu" label="check Jenis Kartu" />
+                      <CFormCheck id="telco:billing" label="check status Billing" />
+                      <CFormCheck id="telco:paketdata" label="check Paket data" />
+                      <CFormCheck id="telco:saldo" label="check Saldo" />
+                      <CFormCheck id="telco:tenure" label="check Tenure" />
+                      <CFormCheck id="telco:expire" label="check Expire" />
+                      <CFormCheck id="telco:dataexpire" label="check Data Expire" />
+                      <CFormCheck id="telco:aktivasi" label="check Waktu Aktivasi" />
+                    </CCol>
+                  </CRow>
+                </CCardBody>
+              </CCard>
+            </CCol>
+            <CCol>
+              <CCard className="mb-4">
+                <CCardHeader>Parameter Pencarian: Identity</CCardHeader>
+                <CCardBody>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-2 col-form-label">Options</CFormLabel>
+                    <CCol sm={10}>
+                      <CFormCheck id="telco:valid" label="check Kesesuaian KTP - foto wajah" />
+                      <CFormCheck id="telco:active" label="check No KTP" />
+                      <CFormCheck id="telco:jeniskartu" label="check No SIM" />
+                    </CCol>
+                  </CRow>
+                </CCardBody>
+              </CCard>
+            </CCol>
+          </CRow>
+          <CButton>Submit</CButton>
+        </CForm>
       </CContainer>
     </div>
   )
