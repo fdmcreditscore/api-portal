@@ -28,6 +28,42 @@ const ApiCaller = () => {
   const cloneDeep = require('lodash.clonedeep')
   const [modalVisible, setModalVisible] = useState(false)
   const [apisChooseState, setApisChooseState] = useState(cloneDeep(apiList))
+  const [requestInfo, setRequestInfo] = useState({ msisdn: '', ktp: '' })
+
+  const handleOnSubmit = () => {
+    const newapis = apisChooseState
+      .filter((el) => el.include === true)
+      .map((a) => a.name)
+      .join(' ')
+    // const requestOptions = {
+    //   method: 'GET',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(bodymsg),
+    // }
+    fetch(
+      'http://localhost:9020/telco/v1/api/modulset?refid=2020204&msisdn=' +
+        requestInfo.msisdn +
+        '&modulset=' +
+        newapis,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+
+  const handleRequestInfoChange = (e) => {
+    let r = requestInfo
+    if (e.target.id === 'msisdn') {
+      r.msisdn = e.target.value
+    } else if (e.target.id === 'ktp') {
+      r.ktp = e.target.value
+    }
+    setRequestInfo(r)
+  }
 
   const handleChkOnChange = (e) => {
     let apis = apisChooseState.map((element) => {
@@ -42,7 +78,7 @@ const ApiCaller = () => {
       <CContainer>
         <CForm>
           <CRow className="mb-3">
-            <CCol sm={10}>
+            <CCol sm={10} onChange={handleRequestInfoChange}>
               <CCard className="mb-4">
                 <CCardHeader>Input Data Customer</CCardHeader>
                 <CCardBody>
@@ -51,6 +87,7 @@ const ApiCaller = () => {
                     <CCol sm={10}>
                       <CFormInput
                         type="text"
+                        id="msisdn"
                         placeholder="No MSISDN"
                         aria-label="default input example"
                       />
@@ -109,7 +146,7 @@ const ApiCaller = () => {
               </CCard>
             </CCol>
           </CRow>
-          <CButton>Submit</CButton>
+          <CButton onClick={handleOnSubmit}>Submit</CButton>
         </CForm>
       </CContainer>
     </div>

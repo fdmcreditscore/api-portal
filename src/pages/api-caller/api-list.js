@@ -1,5 +1,15 @@
 export const apiList = [
   {
+    name: 'telco:valid',
+    price: 3500,
+    include: false,
+  },
+  {
+    name: 'telco:active',
+    price: 3500,
+    include: false,
+  },
+  {
     name: 'telco:jeniskartu',
     price: 4000,
     include: false,
@@ -42,11 +52,6 @@ export const apiList = [
   {
     name: 'telco:aktivasi',
     price: 2000,
-    include: false,
-  },
-  {
-    name: 'telco:active',
-    price: 3500,
     include: false,
   },
   {
