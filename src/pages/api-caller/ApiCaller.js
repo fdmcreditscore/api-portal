@@ -5,6 +5,8 @@ import {
   CButton,
   CCard,
   CCardBody,
+  CCardText,
+  CCardTitle,
   CContainer,
   CCardHeader,
   CListGroup,
@@ -26,33 +28,43 @@ import { cilUser } from '@coreui/icons'
 
 const ApiCaller = () => {
   const cloneDeep = require('lodash.clonedeep')
+  const data = window.Configs.apiUrl
   const [modalVisible, setModalVisible] = useState(false)
   const [apisChooseState, setApisChooseState] = useState(cloneDeep(apiList))
-  const [requestInfo, setRequestInfo] = useState({ msisdn: '', ktp: '' })
+  const [requestInfo, setRequestInfo] = useState({
+    refid: '',
+    msisdn: '',
+    ktp: '',
+    telcoParameters: [],
+  })
+  const [apiResponse, setApiResponse] = useState({
+    requestId: '',
+    telcoResult: [],
+  })
 
   const handleOnSubmit = () => {
-    const newapis = apisChooseState
+    requestInfo.telcoParameters = apisChooseState
       .filter((el) => el.include === true)
       .map((a) => a.name)
-      .join(' ')
-    // const requestOptions = {
-    //   method: 'GET',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(bodymsg),
-    // }
-    fetch(
-      'http://localhost:9020/telco/v1/api/modulset?refid=2020204&msisdn=' +
-        requestInfo.msisdn +
-        '&modulset=' +
-        newapis,
-    )
+    requestInfo.refid = Math.floor(Math.random() * 99999)
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(requestInfo),
+    }
+    console.log(requestOptions)
+
+    fetch('http://latitude:9030/middlewr/v1/api/getdata', requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
+        setApiResponse(data)
       })
       .catch((err) => {
         console.log(err.message)
       })
+    setModalVisible(true)
   }
 
   const handleRequestInfoChange = (e) => {
@@ -71,13 +83,14 @@ const ApiCaller = () => {
       return element
     })
     setApisChooseState(apis)
+    console.log(apisChooseState)
   }
 
   return (
     <div className="bg-light min-vh-80 d-flex flex-row align-items-top">
       <CContainer>
         <CForm>
-          <CRow className="mb-3">
+          <CRow>
             <CCol sm={10} onChange={handleRequestInfoChange}>
               <CCard className="mb-4">
                 <CCardHeader>Input Data Customer</CCardHeader>
@@ -107,7 +120,7 @@ const ApiCaller = () => {
               </CCard>
             </CCol>
           </CRow>
-          <CRow className="mb-3">
+          <CRow>
             <CCol>
               <CCard className="mb-4">
                 <CCardHeader>Parameter Pencarian: Telco Profile</CCardHeader>
@@ -137,9 +150,13 @@ const ApiCaller = () => {
                   <CRow className="mb-3">
                     <CFormLabel className="col-sm-2 col-form-label">Options</CFormLabel>
                     <CCol sm={10}>
-                      <CFormCheck id="telco:valid" label="check Kesesuaian KTP - foto wajah" />
-                      <CFormCheck id="telco:active" label="check No KTP" />
-                      <CFormCheck id="telco:jeniskartu" label="check No SIM" />
+                      <CFormCheck
+                        id="ident:foto"
+                        label="check Kesesuaian KTP - foto wajah"
+                        disabled
+                      />
+                      <CFormCheck id="ident:cktp" label="check No KTP" disabled />
+                      <CFormCheck id="ident:csim" label="check No SIM" disabled />
                     </CCol>
                   </CRow>
                 </CCardBody>
@@ -149,6 +166,45 @@ const ApiCaller = () => {
           <CButton onClick={handleOnSubmit}>Submit</CButton>
         </CForm>
       </CContainer>
+      <CModal
+        size="xl"
+        alignment="center"
+        backdrop="static"
+        visible={modalVisible}
+        onShow={() => console.log(apisChooseState)}
+        onClose={() => setModalVisible(false)}
+      >
+        <CModalHeader>
+          <CModalTitle>API Request Result</CModalTitle>
+        </CModalHeader>
+        <CModalBody>
+          <CRow>
+            <CCol sm="auto">
+              <CCard style={{ width: '32rem' }} className="mb-4">
+                <CCardHeader>Telco Response</CCardHeader>
+                <CListGroup flush>
+                  {apiResponse.telcoResult.map((n, key) => (
+                    <CListGroupItem key={n.apiName}>
+                      <h6>{n.apiName}</h6>
+                      {n.status} : {n.responseDesc}
+                    </CListGroupItem>
+                  ))}
+                </CListGroup>
+              </CCard>
+            </CCol>
+            <CCol sm="auto">
+              <CCard style={{ width: '32rem' }}>
+                <CCardHeader>Identity Check Response</CCardHeader>
+              </CCard>
+            </CCol>
+          </CRow>
+        </CModalBody>
+        <CModalFooter>
+          <CButton color="primary" onClick={() => setModalVisible(false)}>
+            OK
+          </CButton>
+        </CModalFooter>
+      </CModal>
     </div>
   )
 }

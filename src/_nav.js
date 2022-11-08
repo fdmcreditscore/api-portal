@@ -32,6 +32,12 @@ const _nav = [
   },
   {
     component: CNavItem,
+    name: 'API Call',
+    to: '/pages/api-caller',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
     name: 'Customize API',
     to: '/pages/customize-api',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
@@ -40,12 +46,6 @@ const _nav = [
     component: CNavItem,
     name: 'API Docs',
     to: '/pages/apidoc',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'API Call',
-    to: '/pages/api-caller',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   // {
