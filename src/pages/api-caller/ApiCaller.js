@@ -1,12 +1,10 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { apiList } from './api-list.js'
 import {
   CButton,
   CCard,
   CCardBody,
-  CCardText,
-  CCardTitle,
   CContainer,
   CCardHeader,
   CListGroup,
@@ -23,12 +21,9 @@ import {
   CFormCheck,
   CForm,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilUser } from '@coreui/icons'
 
 const ApiCaller = () => {
   const cloneDeep = require('lodash.clonedeep')
-  const data = window.Configs.apiUrl
   const [modalVisible, setModalVisible] = useState(false)
   const [apisChooseState, setApisChooseState] = useState(cloneDeep(apiList))
   const [requestInfo, setRequestInfo] = useState({
@@ -55,7 +50,7 @@ const ApiCaller = () => {
     }
     console.log(requestOptions)
 
-    fetch('http://latitude:9030/middlewr/v1/api/getdata', requestOptions)
+    fetch(window.Configs.apiUrl, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)

@@ -1,3 +1,3 @@
 var Configs = {
-    apiUrl: "http://localhost:8900",
+    apiUrl: "http://latitude:9030/middlewr/v1/api/getdata",
 }
