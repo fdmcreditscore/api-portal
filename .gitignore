@@ -10,7 +10,7 @@ yarn.lock
 
 # production
 /build
-
+nohup.out
 /.github
 
 # misc
