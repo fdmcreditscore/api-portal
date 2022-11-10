@@ -196,12 +196,12 @@ const ApiCaller = () => {
                 <CCardHeader>Parameter Pencarian: Credit Score</CCardHeader>
                 <CCardBody>
                   <CRow className="mb-3">
-                    <CFormLabel className="col-sm-3 col-form-label">No KTP</CFormLabel>
+                    <CFormLabel className="col-sm-3 col-form-label">NIK KTP</CFormLabel>
                     <CCol sm={9}>
                       <CFormInput
                         type="text"
                         id="ktpcc"
-                        placeholder="No KTP"
+                        placeholder="NIK"
                         aria-label="ktpcc"
                         disabled
                       />
