@@ -20,6 +20,8 @@ import {
   CFormLabel,
   CFormCheck,
   CForm,
+  CInputGroupText,
+  CInputGroup,
 } from '@coreui/react'
 
 const ApiCaller = () => {
@@ -85,7 +87,7 @@ const ApiCaller = () => {
     <div className="bg-light min-vh-80 d-flex flex-row align-items-top">
       <CContainer>
         <CForm>
-          <CRow>
+          {/* <CRow>
             <CCol sm={10} onChange={handleRequestInfoChange}>
               <CCard className="mb-4">
                 <CCardHeader>Input Data Customer</CCardHeader>
@@ -114,21 +116,35 @@ const ApiCaller = () => {
                 </CCardBody>
               </CCard>
             </CCol>
-          </CRow>
+          </CRow> */}
           <CRow>
             <CCol>
               <CCard className="mb-4">
                 <CCardHeader>Parameter Pencarian: Telco Profile</CCardHeader>
                 <CCardBody>
                   <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label">Options</CFormLabel>
-                    <CCol sm={10} onChange={handleChkOnChange}>
+                    <CFormLabel className="col-sm-3 col-form-label">No MSISDN</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="msisdn"
+                        placeholder="No MSISDN"
+                        aria-label="default input example"
+                        onChange={handleRequestInfoChange}
+                      />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CCol sm={6} onChange={handleChkOnChange}>
                       <CFormCheck id="telco:valid" label="check Valid" />
                       <CFormCheck id="telco:active" label="check Active" />
                       <CFormCheck id="telco:jeniskartu" label="check Jenis Kartu" />
                       <CFormCheck id="telco:billing" label="check status Billing" />
                       <CFormCheck id="telco:paketdata" label="check Paket data" />
                       <CFormCheck id="telco:saldo" label="check Saldo" />
+                    </CCol>
+                    <CCol sm={6} onChange={handleChkOnChange}>
+                      <CFormCheck id="telco:quotadata" label="check Quota Data" />
                       <CFormCheck id="telco:tenure" label="check Tenure" />
                       <CFormCheck id="telco:expire" label="check Expire" />
                       <CFormCheck id="telco:dataexpire" label="check Data Expire" />
@@ -143,15 +159,107 @@ const ApiCaller = () => {
                 <CCardHeader>Parameter Pencarian: Identity</CCardHeader>
                 <CCardBody>
                   <CRow className="mb-3">
-                    <CFormLabel className="col-sm-2 col-form-label">Options</CFormLabel>
+                    <CFormLabel className="col-sm-2 col-form-label">No KTP</CFormLabel>
                     <CCol sm={10}>
-                      <CFormCheck
-                        id="ident:foto"
-                        label="check Kesesuaian KTP - foto wajah"
-                        disabled
+                      <CFormInput
+                        type="text"
+                        placeholder="Input no KTP"
+                        aria-label="default input example"
                       />
-                      <CFormCheck id="ident:cktp" label="check No KTP" disabled />
-                      <CFormCheck id="ident:csim" label="check No SIM" disabled />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CInputGroup className="mb-3">
+                      <CFormInput
+                        placeholder="Upload foto KTP"
+                        aria-label="Recipient's username"
+                        aria-describedby="basic-addon2"
+                      />
+                      <CInputGroupText id="basic-addon2">Choose file</CInputGroupText>
+                    </CInputGroup>
+                    <CInputGroup className="mb-3">
+                      <CFormInput
+                        placeholder="Upload foto wajah"
+                        aria-label="foto wajah"
+                        aria-describedby="basic-addon2"
+                      />
+                      <CInputGroupText id="basic-addon2">Choose file</CInputGroupText>
+                    </CInputGroup>
+                  </CRow>
+                </CCardBody>
+              </CCard>
+            </CCol>
+          </CRow>
+          <CRow>
+            <CCol>
+              <CCard className="mb-4">
+                <CCardHeader>Parameter Pencarian: Credit Score</CCardHeader>
+                <CCardBody>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-3 col-form-label">No NPWP</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="email"
+                        placeholder="No NPWP"
+                        aria-label="default input example"
+                        onChange={handleRequestInfoChange}
+                      />
+                    </CCol>
+                  </CRow>
+                </CCardBody>
+              </CCard>
+            </CCol>
+            <CCol>
+              <CCard className="mb-4">
+                <CCardHeader>Parameter Pencarian: Sosial Media</CCardHeader>
+                <CCardBody>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-3 col-form-label">Email Address</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="email"
+                        placeholder="Email Address"
+                        aria-label="default input example"
+                        onChange={handleRequestInfoChange}
+                      />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-3 col-form-label">Twitter</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="email"
+                        placeholder="Twitter Account"
+                        aria-label="twitter"
+                        onChange={handleRequestInfoChange}
+                      />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-3 col-form-label">Instagram</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="email"
+                        placeholder="Instagram Account"
+                        aria-label="instagram"
+                        onChange={handleRequestInfoChange}
+                      />
+                    </CCol>
+                  </CRow>
+                  <CRow className="mb-3">
+                    <CFormLabel className="col-sm-3 col-form-label">Facebook</CFormLabel>
+                    <CCol sm={9}>
+                      <CFormInput
+                        type="text"
+                        id="email"
+                        placeholder="Facebook Account"
+                        aria-label="facebook"
+                        onChange={handleRequestInfoChange}
+                      />
                     </CCol>
                   </CRow>
                 </CCardBody>

@@ -14,22 +14,22 @@ const _nav = [
       text: 'NEW',
     },
   },
-  {
-    component: CNavTitle,
-    name: 'Customer Menu',
-  },
-  {
-    component: CNavItem,
-    name: 'Customer Dashboard',
-    to: '/pages/customer-dashboard',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Submit Registration',
-    to: '/pages/registration',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Customer Menu',
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Customer Dashboard',
+  //   to: '/pages/customer-dashboard',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Submit Registration',
+  //   to: '/pages/registration',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
   {
     component: CNavItem,
     name: 'API Call',
