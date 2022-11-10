@@ -196,14 +196,14 @@ const ApiCaller = () => {
                 <CCardHeader>Parameter Pencarian: Credit Score</CCardHeader>
                 <CCardBody>
                   <CRow className="mb-3">
-                    <CFormLabel className="col-sm-3 col-form-label">No NPWP</CFormLabel>
+                    <CFormLabel className="col-sm-3 col-form-label">No KTP</CFormLabel>
                     <CCol sm={9}>
                       <CFormInput
                         type="text"
-                        id="email"
-                        placeholder="No NPWP"
-                        aria-label="default input example"
-                        onChange={handleRequestInfoChange}
+                        id="ktpcc"
+                        placeholder="No KTP"
+                        aria-label="ktpcc"
+                        disabled
                       />
                     </CCol>
                   </CRow>
@@ -222,7 +222,7 @@ const ApiCaller = () => {
                         id="email"
                         placeholder="Email Address"
                         aria-label="default input example"
-                        onChange={handleRequestInfoChange}
+                        disabled
                       />
                     </CCol>
                   </CRow>
@@ -231,10 +231,10 @@ const ApiCaller = () => {
                     <CCol sm={9}>
                       <CFormInput
                         type="text"
-                        id="email"
+                        id="twitter"
                         placeholder="Twitter Account"
                         aria-label="twitter"
-                        onChange={handleRequestInfoChange}
+                        disabled
                       />
                     </CCol>
                   </CRow>
@@ -243,10 +243,10 @@ const ApiCaller = () => {
                     <CCol sm={9}>
                       <CFormInput
                         type="text"
-                        id="email"
+                        id="instagram"
                         placeholder="Instagram Account"
                         aria-label="instagram"
-                        onChange={handleRequestInfoChange}
+                        disabled
                       />
                     </CCol>
                   </CRow>
@@ -255,10 +255,10 @@ const ApiCaller = () => {
                     <CCol sm={9}>
                       <CFormInput
                         type="text"
-                        id="email"
+                        id="facebook"
                         placeholder="Facebook Account"
                         aria-label="facebook"
-                        onChange={handleRequestInfoChange}
+                        disabled
                       />
                     </CCol>
                   </CRow>
