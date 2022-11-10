@@ -8,7 +8,7 @@ const ApiDoc = () => {
     <div className="bg-light min-vh-100 d-flex flex-row align-items-top">
       <CContainer>
         {/* <SwaggerUI url="https://petstore3.swagger.io/api/v3/openapi.json" /> */}
-        <SwaggerUI url="http://localhost:3000/openapi.json" />
+        <SwaggerUI url="http://43.230.7.46:3000/openapi.json" />
       </CContainer>
     </div>
   )
