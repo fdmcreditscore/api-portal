@@ -17,7 +17,6 @@ import {
   CFormSelect,
 } from '@coreui/react'
 import { apiList } from './api-list.js'
-import DatePicker from 'react-datepicker'
 
 const TelcoForm = () => {
   const cloneDeep = require('lodash.clonedeep')
@@ -156,7 +155,7 @@ const TelcoForm = () => {
                       </CCol>
                       <CCol sm={2}>
                         <CFormInput
-                          type="text"
+                          type="date"
                           id="actdate"
                           placeholder="yyyy-MM-dd"
                           aria-label="default input example"
