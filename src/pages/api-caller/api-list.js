@@ -1,62 +1,48 @@
 export const apiList = [
   {
-    name: 'telco:valid',
-    price: 3500,
+    apiName: 'telco:valid',
+    apiParam: '',
     include: false,
   },
   {
-    name: 'telco:active',
-    price: 3500,
+    apiName: 'telco:active',
     include: false,
   },
   {
-    name: 'telco:jeniskartu',
-    price: 4000,
+    apiName: 'telco:jeniskartu',
     include: false,
   },
   {
-    name: 'telco:billing',
-    price: 3500,
+    apiName: 'telco:billing',
     include: false,
   },
   {
-    name: 'telco:paketdata',
-    price: 3500,
+    apiName: 'telco:paketdata',
     include: false,
   },
   {
-    name: 'telco:saldo',
-    price: 5000,
+    apiName: 'telco:saldo',
     include: false,
   },
   {
-    name: 'telco:quotadata',
-    price: 3500,
+    apiName: 'telco:quotadata',
     include: false,
   },
   {
-    name: 'telco:tenure',
-    price: 3500,
+    apiName: 'telco:tenure',
     include: false,
   },
   {
-    name: 'telco:expire',
-    price: 4000,
+    apiName: 'telco:expire',
     include: false,
   },
   {
-    name: 'telco:dataexpire',
-    price: 3000,
+    apiName: 'telco:dataexpire',
     include: false,
   },
   {
-    name: 'telco:aktivasi',
-    price: 2000,
-    include: false,
-  },
-  {
-    name: 'identity:matchface',
-    price: 1000,
+    apiName: 'telco:aktivasi',
+    apiParam: '',
     include: false,
   },
 ]

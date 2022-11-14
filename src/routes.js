@@ -13,6 +13,7 @@ const InternalDashboard = React.lazy(() => import('./pages/internal-dashboard/In
 const ApicallHistory = React.lazy(() => import('./pages/apicall-history/ApicallHistory'))
 const ApiDoc = React.lazy(() => import('./pages/apidoc/ApiDoc'))
 const ApiCaller = React.lazy(() => import('./pages/api-caller/ApiCaller'))
+const History = React.lazy(() => import('./pages/history/History'))
 
 // Icons
 const CoreUIIcons = React.lazy(() => import('./views/icons/coreui-icons/CoreUIIcons'))
@@ -38,6 +39,7 @@ const routes = [
   { path: '/pages/apicallhistory', name: 'ApicallHistory', element: ApicallHistory },
   { path: '/pages/apidoc', name: 'ApiDoc', element: ApiDoc },
   { path: '/pages/api-caller', name: 'ApiCaller', element: ApiCaller },
+  { path: '/pages/history', name: 'History', element: History },
 ]
 
 export default routes

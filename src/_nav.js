@@ -48,7 +48,12 @@ const _nav = [
     to: '/pages/apidoc',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  // {
+  {
+    component: CNavItem,
+    name: 'History Report',
+    to: '/pages/report',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  }, // {
   //   component: CNavTitle,
   //   name: 'Internal Administration',
   // },
