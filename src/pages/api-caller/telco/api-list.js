@@ -41,7 +41,7 @@ export const apiList = [
     include: false,
   },
   {
-    apiName: 'telco:aktivasi',
+    apiName: 'isat:aktivasi',
     apiParam: '',
     include: false,
   },

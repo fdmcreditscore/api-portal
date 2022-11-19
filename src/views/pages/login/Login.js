@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -15,8 +16,35 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
 
-const Login = () => {
+async function loginUser(credentials) {
+  console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
+  return fetch(window.location.origin + '/mgmt/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json())
+}
+
+const Login = ({ setLogin }) => {
+  const [username, setUserName] = useState()
+  const [password, setPassword] = useState()
+  const [alertVisible, setAlertVisible] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const login = await loginUser({
+      username,
+      password,
+    })
+    setAlertVisible(login === 0 ? false : true)
+    setLogin(login)
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -25,14 +53,18 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        placeholder="username"
+                        autoComplete="username"
+                        onChange={(e) => setUserName(e.target.value)}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -40,13 +72,14 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        placeholder="Password"
+                        placeholder="password"
                         autoComplete="current-password"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton type="submit" color="primary" className="px-4">
                           Login
                         </CButton>
                       </CCol>
@@ -57,6 +90,9 @@ const Login = () => {
                       </CCol>
                     </CRow>
                   </CForm>
+                  <CAlert color="warning" visible={alertVisible}>
+                    User/password is not registered
+                  </CAlert>
                 </CCardBody>
               </CCard>
               <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
@@ -81,6 +117,10 @@ const Login = () => {
       </CContainer>
     </div>
   )
+}
+
+Login.propTypes = {
+  setLogin: PropTypes.func.isRequired,
 }
 
 export default Login

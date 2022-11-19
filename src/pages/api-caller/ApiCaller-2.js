@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { apiList } from './api-list.js'
+import { apiList } from './telco/api-list.js'
 import {
   CButton,
   CCard,

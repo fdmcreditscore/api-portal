@@ -55,7 +55,7 @@ const Identity = () => {
       body: formData,
     }
 
-    fetch(window.Configs.identityUrl, config)
+    fetch(process.env.REACT_APP_IDENTITY_URL, config)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)

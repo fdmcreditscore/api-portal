@@ -1,5 +1,5 @@
 import React from 'react'
-import { CForm, CInputGroup } from '@coreui/react'
+import { CForm } from '@coreui/react'
 import { useState } from 'react'
 import {
   CRow,
@@ -17,16 +17,16 @@ import {
   CFormSelect,
 } from '@coreui/react'
 import { apiList } from './api-list.js'
+import LocationSelect from './LocationSelect.js'
 
 const TelcoForm = () => {
   const cloneDeep = require('lodash.clonedeep')
   const [telcoVarsChoosen, setTelcoVarsChoosen] = useState(cloneDeep(apiList))
-
-  const [telcoRequest, setTelcoRequest] = useState({
-    msisdn: '',
-    variable: [''],
-    actdate: '',
-  })
+  const [resultVisible, setResultVisible] = useState(false)
+  const [providerOpt, setProviderOpt] = useState('Indosat')
+  const [actdate, setActdate] = useState('')
+  const [visibleLocation, setVisibleLocation] = useState(false)
+  const [location, setLocation] = useState()
 
   const [apiResponse, setApiResponse] = useState({
     requestId: '',
@@ -45,10 +45,6 @@ const TelcoForm = () => {
     ],
   })
 
-  const [resultVisible, setResultVisible] = useState(false)
-  const [providerOpt, setProviderOpt] = useState('Indosat')
-  const [actdate, setActdate] = useState('')
-
   const handleOnSubmit = () => {
     requestInfo.refid = Math.floor(Math.random() * 99999)
     requestInfo.provider = 'Indosat'
@@ -57,6 +53,12 @@ const TelcoForm = () => {
       requestInfo.apiServices.push({
         apiName: 'telco:aktivasi',
         apiParam: actdate,
+      })
+    }
+    if (location) {
+      requestInfo.apiServices.push({
+        apiName: 'isat:location',
+        apiParam: location,
       })
     }
 
@@ -68,7 +70,7 @@ const TelcoForm = () => {
     }
     console.log(requestOptions)
 
-    fetch(window.Configs.telcoUrl, requestOptions)
+    fetch(window.location.origin + '/middlewr/v1/api/telco', requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
@@ -97,6 +99,11 @@ const TelcoForm = () => {
     })
     setTelcoVarsChoosen(apis)
     console.log(telcoVarsChoosen)
+  }
+
+  const handleLocationChkOnChange = () => {
+    setVisibleLocation(!visibleLocation)
+    if (!visibleLocation) setLocation()
   }
 
   return (
@@ -164,11 +171,21 @@ const TelcoForm = () => {
                         />
                       </CCol>
                     </CRow>
+                    <CRow className="mb-3">
+                      <CCol onChange={handleLocationChkOnChange}>
+                        <CFormCheck id="telco:location" label="Perkiraan Lokasi" />
+                      </CCol>
+                      {visibleLocation && (
+                        <CCol>
+                          <LocationSelect setLocation={setLocation} />
+                        </CCol>
+                      )}
+                    </CRow>
                   </div>
                 )}
               </CCardBody>
               <CCardFooter>
-                <CButton onClick={handleOnSubmit} disabled={providerOpt != 'Indosat'}>
+                <CButton onClick={handleOnSubmit} disabled={providerOpt !== 'Indosat'}>
                   Submit
                 </CButton>
               </CCardFooter>

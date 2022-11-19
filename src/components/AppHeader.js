@@ -31,7 +31,7 @@ const AppHeader = () => {
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
         >
           {/* <CIcon icon={cilMenu} size="lg" /> */}
-          <CImage align="start" rounded src="checkyou_logo.png" width={60} height={60} />
+          <CImage align="start" rounded src="./checkyou_logo.png" width={60} height={60} />
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
