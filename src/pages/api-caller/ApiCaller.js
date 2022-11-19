@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { apiList } from './telco/api-list.js'
 import { CNav, CNavItem, CNavLink, CTabPane, CTabContent, CContainer } from '@coreui/react'
-import Identity from './Identity.js'
+import Identity from './identity/Identity.js'
 import TelcoForm from './telco/TelcoForm.js'
 
 const ApiCaller = () => {

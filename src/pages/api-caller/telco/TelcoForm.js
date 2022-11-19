@@ -27,6 +27,7 @@ const TelcoForm = () => {
   const [actdate, setActdate] = useState('')
   const [visibleLocation, setVisibleLocation] = useState(false)
   const [location, setLocation] = useState()
+  const [formFormat, setFormFormat] = useState(false)
 
   const [apiResponse, setApiResponse] = useState({
     requestId: '',
@@ -44,6 +45,10 @@ const TelcoForm = () => {
       },
     ],
   })
+
+  const handleOnChangeResultFormat = () => {
+    setFormFormat(!formFormat)
+  }
 
   const handleOnSubmit = () => {
     requestInfo.refid = Math.floor(Math.random() * 99999)
@@ -193,9 +198,29 @@ const TelcoForm = () => {
           </CCol>
         </CRow>
       </CForm>
-      {resultVisible && (
-        <CListGroup>
-          <h5>Result</h5>
+      <CListGroup>
+        <CListGroupItem color="info">
+          <div className="d-flex w-100 justify-content-between">
+            <h6 className="mb-1">Result</h6>
+            <CButton color="link" size="sm" onClick={handleOnChangeResultFormat}>
+              {formFormat ? 'JSON Format' : 'Form Format'}
+            </CButton>
+          </div>
+        </CListGroupItem>
+        {formFormat &&
+          apiResponse.responses.map((r) => (
+            <>
+              <CListGroupItem>
+                <CRow>
+                  <CCol sm={3}>{r.apiName} :</CCol>
+                  <CCol>
+                    {r.status} - {r.responseDesc}
+                  </CCol>
+                </CRow>
+              </CListGroupItem>
+            </>
+          ))}
+        {!formFormat && (
           <CListGroupItem>
             <CRow>
               <CCol>
@@ -203,8 +228,8 @@ const TelcoForm = () => {
               </CCol>
             </CRow>
           </CListGroupItem>
-        </CListGroup>
-      )}
+        )}
+      </CListGroup>
     </div>
   )
 }
