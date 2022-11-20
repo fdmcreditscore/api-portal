@@ -1,0 +1,72 @@
+[
+  {
+    "no": "1",
+    "api_service": "API KTP Match",
+    "description": "Verify phone number with NIK Matching, registration status check",
+    "output": "Score",
+    "rate_per_hit": "Rp6,000"
+  },
+  {
+    "no": "2",
+    "api_service": "API Active Roaming",
+    "description": "Check phone number roaming status",
+    "output": "Yes/No",
+    "rate_per_hit": "Rp3,850"
+  },
+  {
+    "no": "3",
+    "api_service": "API Last Location",
+    "description": "Check customer last location, in the city level",
+    "output": "Yes/No",
+    "rate_per_hit": "Rp3,850"
+  },
+  {
+    "no": "4",
+    "api_service": "API Interest",
+    "description": "Check customer interest in the last month",
+    "output": "Top 5 Integest",
+    "rate_per_hit": "Rp3,575"
+  },
+  {
+    "no": "5",
+    "api_service": "API Telco SES*",
+    "description": "Check customer spending capability based on thlco spending & handphone ownership",
+    "output": "Category A-E",
+    "rate_per_hit": "Rp3,575"
+  },
+  {
+    "no": "6",
+    "api_service": "API Active Status",
+    "description": "Checking phone number status",
+    "output": "Active/Grace/Churn",
+    "rate_per_hit": "Rp1,788"
+  },
+  {
+    "no": "7",
+    "api_service": "API Location Scoring Insight",
+    "description": "Verify Home or Office address based on their mobility behavior from last month",
+    "output": "Score",
+    "rate_per_hit": "Rp16,500"
+  },
+  {
+    "no": "8",
+    "api_service": "API SIM Swap*",
+    "description": "Yes/No to indicating wether a SIM was exchange in last 24 hours, 48 hours or beyond 48 hours",
+    "output": "Score",
+    "rate_per_hit": "Rp1,100"
+  },
+  {
+    "no": "9",
+    "api_service": "API Telco Score (BIN 25)",
+    "description": "Recommendation in term of Loan Decision process, through Digital Behavior captured",
+    "output": "Score 1-25",
+    "rate_per_hit": "Rp19,250"
+  },
+  {
+    "no": "10",
+    "api_service": "API Subscriber check",
+    "description": "Check phone number prepaid/postpaid status",
+    "output": "Yes/No",
+    "rate_per_hit": "Rp1,375"
+  }
+]

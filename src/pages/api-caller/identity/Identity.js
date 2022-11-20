@@ -22,6 +22,7 @@ const Identity = () => {
   const [apiResponse, setApiResponse] = useState()
   const [idFormFormat, setIdFormFormat] = useState(true)
   const [withResult, setWithResult] = useState(false)
+  const [similarity, setSimilarity] = useState('0.7')
 
   const [fileKtp, setFileKtp] = useState({
     image: null,
@@ -49,6 +50,12 @@ const Identity = () => {
     reader.readAsDataURL(e.target.files[0])
   }
 
+  const handleOnChangeSimilarity = (e) => {
+    e.preventDefault()
+    setSimilarity(e.target.value)
+    console.log(similarity)
+  }
+
   const handleOnChangeSelfieFile = (e) => {
     e.preventDefault()
     let reader = new FileReader()
@@ -66,10 +73,12 @@ const Identity = () => {
     e.preventDefault()
     setOnProgress(true)
     console.log('Submitting')
+    console.log('Similarity ' + similarity)
     const config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        similarity: similarity,
         imageKtp: fileKtp.encoded,
         imageSelfie: fileSelfie.encoded,
       }),
@@ -96,6 +105,24 @@ const Identity = () => {
               <CCardHeader>Parameter Pencarian: Identity</CCardHeader>
               <CCardBody>
                 <CRow className="mb-3">
+                  <CCol sm={4}>
+                    <CFormLabel className="col-sm-5 col-form-label">
+                      Similarity threshold:
+                    </CFormLabel>
+                  </CCol>
+                  <CCol sm={4}>
+                    <CFormInput
+                      type="number"
+                      step="0.05"
+                      min="0.10"
+                      max="1.00"
+                      id="similarity"
+                      onChange={handleOnChangeSimilarity}
+                      value={similarity}
+                    />
+                  </CCol>
+                </CRow>
+                <CRow className="mb-3">
                   <CCol sm={5}>
                     <CFormLabel className="col-sm-5 col-form-label">Upload File KTP</CFormLabel>
                     <CFormInput type="file" id="filektp" onChange={handleOnChangeKtpFile} />
@@ -111,7 +138,7 @@ const Identity = () => {
                     )}
                   </CCol>
                   <CCol sm={5}>
-                    <CFormLabel className="col-sm-5 col-form-label">Upload Foto wajah</CFormLabel>
+                    <CFormLabel className="col-sm-6 col-form-label">Upload Foto wajah</CFormLabel>
                     <CFormInput type="file" id="filewajah" onChange={handleOnChangeSelfieFile} />
                     {fileSelfie.image && (
                       <CImage
@@ -167,7 +194,7 @@ const Identity = () => {
                     <CCol sm={3}>Face Match :</CCol>
                     <CCol>
                       {apiResponse.face_match.match ? 'Match!' : 'Not Match'} {}
-                      {apiResponse.face_match.similarity}
+                      (Similarity: {apiResponse.face_match.similarity})
                     </CCol>
                   </CRow>
                 </CListGroupItem>
@@ -177,7 +204,7 @@ const Identity = () => {
                   <CRow>
                     <CCol sm={3}>Face Liveness :</CCol>
                     <CCol>
-                      {apiResponse?.face_liveness.doubt ? 'In doubt' : 'Certain'} (liveness: {}
+                      {apiResponse?.face_liveness.doubt ? 'In doubt' : 'Live'} (liveness: {}
                       {apiResponse?.face_liveness.liveness})
                     </CCol>
                   </CRow>

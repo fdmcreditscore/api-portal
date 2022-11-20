@@ -1,33 +1,17 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { CFormSelect } from '@coreui/react'
 import PropTypes from 'prop-types'
+import prov from './provinsi.json'
 
 function LocationSelect({ setLocation }) {
   const [visibleBupati, setVisibleBupati] = useState(false)
   const [visibleCamat, setVisibleCamat] = useState(false)
   const [visibleDesa, setVisibleDesa] = useState(false)
 
-  const [provinsi, setProvinsi] = useState([])
   const [kabupaten, setKabupaten] = useState([{}])
   const [kecamatan, setKecamatan] = useState([{}])
   const [desa, setDesa] = useState([{}])
-
-  useEffect(() => {
-    if (provinsi.length === 0) {
-      console.log('fetch provinsi')
-      fetch(window.location.origin + '/middlewr/v1/api/master/provinsi', {
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setProvinsi(data)
-        })
-        .catch((err) => {
-          console.log(err.message)
-        })
-    }
-  })
 
   const handleOnChangeProvinsi = (e) => {
     console.log(e.target.value)
@@ -103,9 +87,9 @@ function LocationSelect({ setLocation }) {
     <>
       <CFormSelect aria-label="Default select example" onChange={handleOnChangeProvinsi}>
         <option key="A0">Pilih Provinsi</option>
-        {provinsi.map((name) => (
-          <option key={name} value={name}>
-            {name}
+        {prov.map((prov) => (
+          <option key={prov} value={prov}>
+            {prov}
           </option>
         ))}
       </CFormSelect>

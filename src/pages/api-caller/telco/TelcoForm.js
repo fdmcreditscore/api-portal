@@ -56,7 +56,7 @@ const TelcoForm = () => {
     requestInfo.apiServices = telcoVarsChoosen.filter((el) => el.include === true)
     if (actdate) {
       requestInfo.apiServices.push({
-        apiName: 'telco:aktivasi',
+        apiName: 'isat:aktivasi',
         apiParam: actdate,
       })
     }

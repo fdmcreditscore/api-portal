@@ -4,16 +4,16 @@ import { cilPencil, cilSpeedometer } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
-  {
-    component: CNavItem,
-    name: 'Dashboard',
-    to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Dashboard',
+  //   to: '/dashboard',
+  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  //   badge: {
+  //     color: 'info',
+  //     text: 'NEW',
+  //   },
+  // },
   // {
   //   component: CNavTitle,
   //   name: 'Customer Menu',
@@ -31,17 +31,49 @@ const _nav = [
   //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   // },
   {
+    component: CNavTitle,
+    name: 'API Services',
+  },
+  {
     component: CNavItem,
-    name: 'API Call',
-    to: '/pages/api-caller',
+    name: 'Telco API',
+    to: '/pages/api-caller/telco',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Customize API',
-    to: '/pages/customize-api',
+    name: 'Identity API',
+    to: '/pages/api-caller/identity',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: 'Social Media API',
+    to: '/pages/api-caller/socmed',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Credit Score API',
+    to: '/pages/api-caller/credit-score',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavTitle,
+    name: 'Information',
+  },
+  {
+    component: CNavItem,
+    name: 'Pricing',
+    to: '/pages/pricing',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Customize API',
+  //   to: '/pages/customize-api',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
   {
     component: CNavItem,
     name: 'API Docs',
@@ -53,15 +85,10 @@ const _nav = [
     name: 'History Report',
     to: '/pages/report',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  }, // {
+  },
+  // {
   //   component: CNavTitle,
   //   name: 'Internal Administration',
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'Internal Dashboard',
-  //   to: '/pages/internal-dashboard',
-  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   // },
   // {
   //   component: CNavItem,
