@@ -20,7 +20,8 @@ import {
 const Identity = () => {
   const [onProgress, setOnProgress] = useState(false)
   const [apiResponse, setApiResponse] = useState()
-  const [idFormFormat, setIdFormFormat] = useState(false)
+  const [idFormFormat, setIdFormFormat] = useState(true)
+  const [withResult, setWithResult] = useState(false)
 
   const [fileKtp, setFileKtp] = useState({
     image: null,
@@ -78,6 +79,7 @@ const Identity = () => {
       .then((response) => response.json())
       .then((data) => {
         setApiResponse(data)
+        setWithResult(true)
       })
       .catch((err) => {
         console.log(err.message)
@@ -97,32 +99,30 @@ const Identity = () => {
                   <CCol sm={5}>
                     <CFormLabel className="col-sm-5 col-form-label">Upload File KTP</CFormLabel>
                     <CFormInput type="file" id="filektp" onChange={handleOnChangeKtpFile} />
+                    {fileKtp.image && (
+                      <CImage
+                        align="end"
+                        thumbnail
+                        src={fileKtp.image}
+                        width={200}
+                        height={200}
+                        alt="preview image"
+                      />
+                    )}
                   </CCol>
-                  <CCol>
-                    <CImage
-                      align="end"
-                      thumbnail
-                      src={fileKtp.image}
-                      width={200}
-                      height={200}
-                      alt="preview image"
-                    />
-                  </CCol>
-                </CRow>
-                <CRow className="mb-3">
                   <CCol sm={5}>
                     <CFormLabel className="col-sm-5 col-form-label">Upload Foto wajah</CFormLabel>
                     <CFormInput type="file" id="filewajah" onChange={handleOnChangeSelfieFile} />
-                  </CCol>
-                  <CCol>
-                    <CImage
-                      align="end"
-                      thumbnail
-                      src={fileSelfie.image}
-                      width={200}
-                      height={200}
-                      alt="preview image"
-                    />
+                    {fileSelfie.image && (
+                      <CImage
+                        align="end"
+                        thumbnail
+                        src={fileSelfie.image}
+                        width={200}
+                        height={200}
+                        alt="preview image"
+                      />
+                    )}
                   </CCol>
                 </CRow>
               </CCardBody>
@@ -139,39 +139,75 @@ const Identity = () => {
           </CCol>
         </CRow>
       </CForm>
-      <CListGroup>
-        <CListGroupItem color="info">
-          <div className="d-flex w-100 justify-content-between">
-            <h5 className="mb-1">Result</h5>
-            <CButton color="link" size="sm" onClick={handleResultFormat}>
-              {idFormFormat ? 'JSON Format' : 'Form Format'}
-            </CButton>
-          </div>
-        </CListGroupItem>
-        {idFormFormat && (
-          <>
+      {withResult && (
+        <CListGroup>
+          <CListGroupItem color="info">
+            <div className="d-flex w-100 justify-content-between">
+              <h5 className="mb-1">Result</h5>
+              <CButton color="link" size="sm" onClick={handleResultFormat}>
+                {idFormFormat ? 'JSON Format' : 'Form Format'}
+              </CButton>
+            </div>
+          </CListGroupItem>
+          {idFormFormat && (
+            <>
+              <CListGroupItem>
+                <CRow>
+                  <CCol sm={3}>Status :</CCol>
+                  <CCol>{apiResponse?.status}</CCol>
+                </CRow>
+                <CRow>
+                  <CCol sm={3}>Message :</CCol>
+                  <CCol>{apiResponse?.message}</CCol>
+                </CRow>
+              </CListGroupItem>
+              {apiResponse.face_match && (
+                <CListGroupItem>
+                  <CRow>
+                    <CCol sm={3}>Face Match :</CCol>
+                    <CCol>
+                      {apiResponse.face_match.match ? 'Match!' : 'Not Match'} {}
+                      {apiResponse.face_match.similarity}
+                    </CCol>
+                  </CRow>
+                </CListGroupItem>
+              )}
+              {apiResponse.face_liveness && (
+                <CListGroupItem>
+                  <CRow>
+                    <CCol sm={3}>Face Liveness :</CCol>
+                    <CCol>
+                      {apiResponse?.face_liveness.doubt ? 'In doubt' : 'Certain'} (liveness: {}
+                      {apiResponse?.face_liveness.liveness})
+                    </CCol>
+                  </CRow>
+                </CListGroupItem>
+              )}
+              {apiResponse.face_size_check && (
+                <CListGroupItem>
+                  <CRow>
+                    <CCol sm={3}>Face Size Check :</CCol>
+                    <CCol>
+                      {apiResponse.face_size_check.pass_min_face_size ? 'Pass!' : 'Not passed'} {}
+                      (dimensi: {}
+                      {apiResponse.face_size_check.face_h} x {apiResponse?.face_size_check.face_w} )
+                    </CCol>
+                  </CRow>
+                </CListGroupItem>
+              )}
+            </>
+          )}
+          {!idFormFormat && (
             <CListGroupItem>
               <CRow>
-                <CCol sm={3}>Status :</CCol>
-                <CCol>{apiResponse.status}</CCol>
-              </CRow>
-              <CRow>
-                <CCol sm={3}>Message :</CCol>
-                <CCol>{apiResponse.message}</CCol>
+                <CCol>
+                  <pre>{JSON.stringify(apiResponse, null, 4)}</pre>
+                </CCol>
               </CRow>
             </CListGroupItem>
-          </>
-        )}
-        {!idFormFormat && (
-          <CListGroupItem>
-            <CRow>
-              <CCol>
-                <pre>{JSON.stringify(apiResponse, null, 4)}</pre>
-              </CCol>
-            </CRow>
-          </CListGroupItem>
-        )}
-      </CListGroup>
+          )}
+        </CListGroup>
+      )}
     </div>
   )
 }
