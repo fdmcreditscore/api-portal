@@ -18,6 +18,7 @@ const Socmed = React.lazy(() => import('./pages/api-caller/socmed/Socmed'))
 const CreditScore = React.lazy(() => import('./pages/api-caller/credit-score/CreditScore'))
 const History = React.lazy(() => import('./pages/history/History'))
 const Pricing = React.lazy(() => import('./pages/pricing/Pricing'))
+const ProfileData = React.lazy(() => import('./pages/profile-data/ProfileData'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -39,7 +40,7 @@ const routes = [
   { path: '/pages/api-caller/credit-score', name: 'CreditScore', element: CreditScore },
   { path: '/pages/history', name: 'History', element: History },
   { path: '/pages/pricing', name: 'Pricing', element: Pricing },
-  { path: '/pages/profiledata', name: 'ProfileData', element: ProfileData },
+  { path: '/pages/profile-data', name: 'ProfileData', element: ProfileData },
 ]
 
 export default routes

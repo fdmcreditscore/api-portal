@@ -1,19 +1,5 @@
 import React from 'react'
-import {
-  CCard,
-  CCardBody,
-  CContainer,
-  CCardHeader,
-  CListGroup,
-  CTable,
-  CTableHead,
-  CTableBody,
-  CTableRow,
-  CTableHeaderCell,
-  CTableDataCell,
-  CImage,
-} from '@coreui/react'
-import tseldata from './telkomsel_price.json'
+import { CCard, CCardBody, CContainer, CCardHeader, CListGroup } from '@coreui/react'
 
 const ProfileData = () => {
   return (
