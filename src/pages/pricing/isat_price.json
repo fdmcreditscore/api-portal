@@ -1,0 +1,112 @@
+[
+  {
+    "no": "1",
+    "attributes": "Is the MSISDN valid?",
+    "type": "Confirmation (Y/N)",
+    "tier1": "220",
+    "tier2": "170",
+    "tier3": "130",
+    "tier4": "100",
+    "tier5": "80"
+  },
+  {
+    "no": "2",
+    "attributes": "Is the MSISDN active?",
+    "type": "Confirmation (Y/N)",
+    "tier1": "220",
+    "tier2": "170",
+    "tier3": "130",
+    "tier4": "100",
+    "tier5": "80"
+  },
+  {
+    "no": "3",
+    "attributes": "Is MSISDN a prepaid number ?",
+    "type": "Confirmation (Y/N)",
+    "tier1": "220",
+    "tier2": "170",
+    "tier3": "130",
+    "tier4": "100",
+    "tier5": "80"
+  },
+  {
+    "no": "4",
+    "attributes": "Is MSISDN has outstanding bill ?",
+    "type": "Confirmation (Y/N)",
+    "tier1": "10,000",
+    "tier2": "7,800",
+    "tier3": "6,000",
+    "tier4": "4,600",
+    "tier5": "3,500"
+  },
+  {
+    "no": "5",
+    "attributes": "Is MSISDN having a data package ?",
+    "type": "Confirmation (Y/N)",
+    "tier1": "220",
+    "tier2": "170",
+    "tier3": "130",
+    "tier4": "100",
+    "tier5": "80"
+  },
+  {
+    "no": "6",
+    "attributes": "Challange MSISDN activation date ?",
+    "type": "Confirmation (before/after)",
+    "tier1": "220",
+    "tier2": "170",
+    "tier3": "130",
+    "tier4": "100",
+    "tier5": "80"
+  },
+  {
+    "no": "7",
+    "attributes": "How is MSISDN quota currently ?",
+    "type": "Group category",
+    "tier1": "1,000",
+    "tier2": "780",
+    "tier3": "600",
+    "tier4": "460",
+    "tier5": "350"
+  },
+  {
+    "no": "8",
+    "attributes": "How long is MSISDN to expiration ?",
+    "type": "Group category",
+    "tier1": "1,000",
+    "tier2": "780",
+    "tier3": "600",
+    "tier4": "460",
+    "tier5": "350"
+  },
+  {
+    "no": "9",
+    "attributes": "How long is MSISDN to its inactive date?",
+    "type": "Group category",
+    "tier1": "1,000",
+    "tier2": "780",
+    "tier3": "600",
+    "tier4": "460",
+    "tier5": "350"
+  },
+  {
+    "no": "10",
+    "attributes": "How long is MSISDN number tenure ?",
+    "type": "Group category",
+    "tier1": "1,000",
+    "tier2": "780",
+    "tier3": "600",
+    "tier4": "460",
+    "tier5": "350"
+  },
+  {
+    "no": "11",
+    "attributes": "How is the Number balance currently ?",
+    "type": "Group category",
+    "tier1": "1,000",
+    "tier2": "780",
+    "tier3": "600",
+    "tier4": "460",
+    "tier5": "350"
+  }
+]

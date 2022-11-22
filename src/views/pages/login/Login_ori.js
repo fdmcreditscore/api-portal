@@ -12,7 +12,6 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
-  CImage,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -50,7 +49,7 @@ const Login = ({ setLogin }) => {
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={5}>
+          <CCol md={8}>
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
@@ -96,17 +95,14 @@ const Login = ({ setLogin }) => {
                   </CAlert>
                 </CCardBody>
               </CCard>
-              {/* <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
-                    <CImage
-                      thumbnail
-                      src="./checkyou_logo.png"
-                      width={200}
-                      height={200}
-                      alt="preview image"
-                    />
                     <h2>Sign up</h2>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
                     <Link to="/register">
                       <CButton color="primary" className="mt-3" active tabIndex={-1}>
                         Register Now!
@@ -114,7 +110,7 @@ const Login = ({ setLogin }) => {
                     </Link>
                   </div>
                 </CCardBody>
-              </CCard> */}
+              </CCard>
             </CCardGroup>
           </CCol>
         </CRow>

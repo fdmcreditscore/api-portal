@@ -60,6 +60,22 @@ const _nav = [
   },
   {
     component: CNavTitle,
+    name: 'Profile Data Service',
+  },
+  {
+    component: CNavItem,
+    name: 'Sektor UMKM',
+    to: '/pages/profiledata',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Sektor Pendidikan',
+    to: '/pages/profiledata',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavTitle,
     name: 'Information',
   },
   {

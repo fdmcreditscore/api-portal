@@ -15,6 +15,7 @@ import {
   CListGroup,
   CListGroupItem,
   CFormSelect,
+  CSpinner,
 } from '@coreui/react'
 import { apiList } from './api-list.js'
 import LocationSelect from './LocationSelect.js'
@@ -27,7 +28,8 @@ const TelcoForm = () => {
   const [actdate, setActdate] = useState('')
   const [visibleLocation, setVisibleLocation] = useState(false)
   const [location, setLocation] = useState()
-  const [formFormat, setFormFormat] = useState(false)
+  const [formFormat, setFormFormat] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const [apiResponse, setApiResponse] = useState({
     requestId: '',
@@ -51,6 +53,7 @@ const TelcoForm = () => {
   }
 
   const handleOnSubmit = () => {
+    setLoading(true)
     requestInfo.refid = Math.floor(Math.random() * 99999)
     requestInfo.provider = 'Indosat'
     requestInfo.apiServices = telcoVarsChoosen.filter((el) => el.include === true)
@@ -81,8 +84,10 @@ const TelcoForm = () => {
         console.log(data)
         setApiResponse(data)
         setResultVisible(true)
+        setLoading(false)
       })
       .catch((err) => {
+        setLoading(false)
         console.log(err.message)
       })
   }
@@ -193,24 +198,25 @@ const TelcoForm = () => {
                 <CButton onClick={handleOnSubmit} disabled={providerOpt !== 'Indosat'}>
                   Submit
                 </CButton>
+                {loading && <CSpinner color="success" />}
               </CCardFooter>
             </CCard>
           </CCol>
         </CRow>
       </CForm>
-      <CListGroup>
-        <CListGroupItem color="info">
-          <div className="d-flex w-100 justify-content-between">
-            <h6 className="mb-1">Result</h6>
-            <CButton color="link" size="sm" onClick={handleOnChangeResultFormat}>
-              {formFormat ? 'JSON Format' : 'Form Format'}
-            </CButton>
-          </div>
-        </CListGroupItem>
-        {formFormat &&
-          apiResponse.responses.map((r) => (
-            <>
-              <CListGroupItem>
+      {resultVisible && (
+        <CListGroup>
+          <CListGroupItem color="info">
+            <div className="d-flex w-100 justify-content-between">
+              <h6 className="mb-1">Result</h6>
+              <CButton color="link" size="sm" onClick={handleOnChangeResultFormat}>
+                {formFormat ? 'JSON Format' : 'Form Format'}
+              </CButton>
+            </div>
+          </CListGroupItem>
+          {formFormat &&
+            apiResponse.responses.map((r) => (
+              <CListGroupItem key={r.apiName}>
                 <CRow>
                   <CCol sm={3}>{r.apiName} :</CCol>
                   <CCol>
@@ -218,18 +224,18 @@ const TelcoForm = () => {
                   </CCol>
                 </CRow>
               </CListGroupItem>
-            </>
-          ))}
-        {!formFormat && (
-          <CListGroupItem>
-            <CRow>
-              <CCol>
-                <pre>{JSON.stringify(apiResponse, null, 4)}</pre>
-              </CCol>
-            </CRow>
-          </CListGroupItem>
-        )}
-      </CListGroup>
+            ))}
+          {!formFormat && (
+            <CListGroupItem>
+              <CRow>
+                <CCol>
+                  <pre>{JSON.stringify(apiResponse, null, 4)}</pre>
+                </CCol>
+              </CRow>
+            </CListGroupItem>
+          )}
+        </CListGroup>
+      )}
     </div>
   )
 }

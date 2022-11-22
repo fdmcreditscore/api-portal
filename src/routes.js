@@ -39,6 +39,7 @@ const routes = [
   { path: '/pages/api-caller/credit-score', name: 'CreditScore', element: CreditScore },
   { path: '/pages/history', name: 'History', element: History },
   { path: '/pages/pricing', name: 'Pricing', element: Pricing },
+  { path: '/pages/profiledata', name: 'ProfileData', element: ProfileData },
 ]
 
 export default routes

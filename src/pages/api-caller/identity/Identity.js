@@ -24,10 +24,7 @@ const Identity = () => {
   const [withResult, setWithResult] = useState(false)
   const [similarity, setSimilarity] = useState('0.7')
 
-  const [fileKtp, setFileKtp] = useState({
-    image: null,
-    encoded: null,
-  })
+  const [fileKtp, setFileKtp] = useState({})
   const [fileSelfie, setFileSelfie] = useState({
     image: null,
     encoded: null,
@@ -71,6 +68,10 @@ const Identity = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault()
+    if (!(fileKtp && fileKtp.encoded && fileSelfie && fileSelfie.encoded)) {
+      alert('File image belum diupload')
+      return
+    }
     setOnProgress(true)
     console.log('Submitting')
     console.log('Similarity ' + similarity)
@@ -89,11 +90,11 @@ const Identity = () => {
       .then((data) => {
         setApiResponse(data)
         setWithResult(true)
+        setOnProgress(false)
       })
       .catch((err) => {
         console.log(err.message)
       })
-    setOnProgress(false)
   }
 
   return (
@@ -155,12 +156,7 @@ const Identity = () => {
               </CCardBody>
               <CCardFooter>
                 <CButton onClick={handleOnSubmit}>Submit</CButton>
-                {onProgress && (
-                  <CButton disabled>
-                    <CSpinner component="span" size="sm" aria-hidden="true" />
-                    Loading...
-                  </CButton>
-                )}
+                {onProgress && <CSpinner color="success" />}
               </CCardFooter>
             </CCard>
           </CCol>

@@ -11,9 +11,9 @@ import {
   CTableRow,
   CTableHeaderCell,
   CTableDataCell,
-  CImage,
 } from '@coreui/react'
 import tseldata from './telkomsel_price.json'
+import isatprice from './isat_price.json'
 
 const Pricing = () => {
   return (
@@ -26,7 +26,7 @@ const Pricing = () => {
           <CCardBody>
             <CListGroup>
               <CTable>
-                <CTableHead color="light">
+                <CTableHead color="warning">
                   <CTableRow>
                     <CTableHeaderCell scope="col">#</CTableHeaderCell>
                     <CTableHeaderCell scope="col">API Service</CTableHeaderCell>
@@ -51,12 +51,59 @@ const Pricing = () => {
           </CCardBody>
         </CCard>
         <br />
-        <CCard>
+        {/* <CCard>
           <CCardHeader>
             <h5>Indosat API Price</h5>
           </CCardHeader>
           <CCardBody>
             <CImage src="/price_indosat.png" width={1100} height={500} fluid />
+          </CCardBody>
+        </CCard>
+        <br /> */}
+        <CCard>
+          <CCardHeader>
+            <h5>Indosat API Price</h5>
+          </CCardHeader>
+          <CCardBody>
+            <CListGroup>
+              <CTable>
+                <CTableHead color="dark">
+                  <CTableRow>
+                    <CTableHeaderCell sm={2}>No</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">API Service</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Output</CTableHeaderCell>
+                    <CTableHeaderCell>Tier #1</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tier #2</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tier #3</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tier #4</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tier #5</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  {isatprice.map((p) => (
+                    <CTableRow key={p.no}>
+                      <CTableDataCell>{p.no}</CTableDataCell>
+                      <CTableDataCell>{p.attributes}</CTableDataCell>
+                      <CTableDataCell>{p.type}</CTableDataCell>
+                      <CTableDataCell>{p.tier1}</CTableDataCell>
+                      <CTableDataCell>{p.tier2}</CTableDataCell>
+                      <CTableDataCell>{p.tier3}</CTableDataCell>
+                      <CTableDataCell>{p.tier4}</CTableDataCell>
+                      <CTableDataCell>{p.tier5}</CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+              </CTable>
+              Tier #1: 10,000 - 50,000 Hits/Month
+              <br />
+              Tier #2: 50,001 - 1,000,000 Hits/Month
+              <br />
+              Tier #3: 1,000,001 - 5,000,000 Hits/Month
+              <br />
+              Tier #4: 5,000,001 - 10,000,000 Hits/Month
+              <br />
+              Tier #5: 10,000,001 and above
+            </CListGroup>
           </CCardBody>
         </CCard>
       </CContainer>
