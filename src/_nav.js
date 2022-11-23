@@ -4,16 +4,12 @@ import { cilPencil, cilSpeedometer } from '@coreui/icons'
 import { CNavItem, CNavTitle } from '@coreui/react'
 
 const _nav = [
-  // {
-  //   component: CNavItem,
-  //   name: 'Dashboard',
-  //   to: '/dashboard',
-  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  //   badge: {
-  //     color: 'info',
-  //     text: 'NEW',
-  //   },
-  // },
+  {
+    component: CNavItem,
+    name: 'Dashboard',
+    to: '/dashboard',
+    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
   // {
   //   component: CNavTitle,
   //   name: 'Customer Menu',
@@ -37,13 +33,13 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Telco API',
-    to: '/pages/api-caller/telco',
+    to: '/pages/api-telco',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Identity API',
-    to: '/pages/api-caller/identity',
+    to: '/pages/api-identity',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {

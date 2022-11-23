@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export default function useToken() {
   const getLogin = () => {
-    const tokenString = sessionStorage.getItem('cddlogin')
+    const tokenString = localStorage.getItem('cddlogin')
     const userLogin = JSON.parse(tokenString)
     return userLogin?.status
   }
@@ -10,7 +10,7 @@ export default function useToken() {
   const [login, setLogin] = useState(getLogin())
 
   const saveLogin = (userLogin) => {
-    if (userLogin.status === 0) sessionStorage.setItem('cddlogin', JSON.stringify(userLogin))
+    if (userLogin.status === 0) localStorage.setItem('cddlogin', JSON.stringify(userLogin))
     setLogin(userLogin.status)
   }
 
