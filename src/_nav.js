@@ -10,25 +10,9 @@ const _nav = [
     to: '/dashboard',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavTitle,
-  //   name: 'Customer Menu',
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'Customer Dashboard',
-  //   to: '/pages/customer-dashboard',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'Submit Registration',
-  //   to: '/pages/registration',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
   {
     component: CNavTitle,
-    name: 'API Services',
+    name: 'API Parameter Services',
   },
   {
     component: CNavItem,
@@ -45,13 +29,37 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Social Media API',
-    to: '/pages/api-caller/socmed',
+    to: '/pages/api-socmed',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Credit Score API',
-    to: '/pages/api-caller/credit-score',
+    to: '/pages/api-credit-score',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Credit Card API',
+    to: '/pages/api-creditcard',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'OCR API',
+    to: '/pages/api-ocr',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Telco Score API',
+    to: '/pages/api-telco-score',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Loan History API',
+    to: '/pages/api-loan-hist',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {

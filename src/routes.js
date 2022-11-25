@@ -13,6 +13,11 @@ const TelcoForm = React.lazy(() => import('./pages/api-telco/TelcoForm'))
 const Identity = React.lazy(() => import('./pages/api-identity/Identity'))
 const Socmed = React.lazy(() => import('./pages/api-socmed/Socmed'))
 const CreditScore = React.lazy(() => import('./pages/api-credit-score/CreditScore'))
+const CreditCard = React.lazy(() => import('./pages/api-creditcard/CreditCard'))
+const Ocr = React.lazy(() => import('./pages/api-ocr/Ocr'))
+const TelcoScore = React.lazy(() => import('./pages/api-telco-score/TelcoScore'))
+const LoanHist = React.lazy(() => import('./pages/api-loan-hist/LoanHist'))
+
 const History = React.lazy(() => import('./pages/history/History'))
 const Pricing = React.lazy(() => import('./pages/pricing/Pricing'))
 const ProfileData = React.lazy(() => import('./pages/profile-data/ProfileData'))
@@ -31,6 +36,10 @@ const routes = [
   { path: '/pages/api-identity', name: 'Identity', element: Identity },
   { path: '/pages/api-socmed', name: 'Socmed', element: Socmed },
   { path: '/pages/api-credit-score', name: 'CreditScore', element: CreditScore },
+  { path: '/pages/api-creditcard', name: 'CreditCard', element: CreditCard },
+  { path: '/pages/api-ocr', name: 'OCR', element: Ocr },
+  { path: '/pages/api-telco-score', name: 'TelcoScore', element: TelcoScore },
+  { path: '/pages/api-loan-hist', name: 'LoanHist', element: LoanHist },
   { path: '/pages/history', name: 'History', element: History },
   { path: '/pages/pricing', name: 'Pricing', element: Pricing },
   { path: '/pages/profile-data', name: 'ProfileData', element: ProfileData },

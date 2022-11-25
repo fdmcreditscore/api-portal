@@ -8,6 +8,7 @@ import {
   CRow,
   CCol,
   CProgress,
+  CProgressBar,
   CTable,
   CTableHead,
   CTableHeaderCell,
@@ -129,19 +130,6 @@ const Dashboard = () => {
         <CCardBody>
           <CRow>
             <CCol xs={4}>
-              <CWidgetStatsC
-                className="mb-6"
-                icon={<CIcon icon={cilChartPie} height={36} />}
-                progress={{ color: 'success', value: 75 }}
-                text="Widget helper text"
-                title="Credit Balance"
-                value="Rp 40,000,000"
-              />
-            </CCol>
-          </CRow>
-          <br />
-          <CRow>
-            <CCol xs={4}>
               <CWidgetStatsF
                 className="mb-3"
                 color="primary"
@@ -177,6 +165,55 @@ const Dashboard = () => {
                 value="20"
               />
             </CCol>
+            <CCol xs={4}>
+              <CWidgetStatsF
+                className="mb-3"
+                color="primary"
+                icon={<CIcon icon={cilChartPie} height={24} />}
+                title="Credit Card API call"
+                value="0"
+              />
+            </CCol>
+            <CCol xs={4}>
+              <CWidgetStatsF
+                className="mb-3"
+                color="warning"
+                icon={<CIcon icon={cilChartPie} height={24} />}
+                title="OCR API call"
+                value="0"
+              />
+            </CCol>
+            <CCol xs={4}>
+              <CWidgetStatsF
+                className="mb-3"
+                color="primary"
+                icon={<CIcon icon={cilChartPie} height={24} />}
+                title="Telco Score API call"
+                value="0"
+              />
+            </CCol>
+            <CCol xs={4}>
+              <CWidgetStatsF
+                className="mb-3"
+                color="warning"
+                icon={<CIcon icon={cilChartPie} height={24} />}
+                title="Loan History API call"
+                value="0"
+              />
+            </CCol>
+          </CRow>
+          <br />
+          <CRow>
+            <CCol xs={4}>
+              <CWidgetStatsC
+                className="mb-6"
+                icon={<CIcon icon={cilChartPie} height={36} />}
+                progress={{ color: 'success', value: 75 }}
+                text="Widget helper text"
+                title="Current Balance"
+                value="Rp 40,000,000"
+              />
+            </CCol>
           </CRow>
         </CCardBody>
       </CCard>
@@ -194,9 +231,8 @@ const Dashboard = () => {
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
                     <CTableHeaderCell>Registered User</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
                     <CTableHeaderCell>Usage</CTableHeaderCell>
-                    <CTableHeaderCell>Activity</CTableHeaderCell>
+                    <CTableHeaderCell>Last Login</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -208,12 +244,8 @@ const Dashboard = () => {
                       <CTableDataCell>
                         <div>{item.user.name}</div>
                         <div className="small text-medium-emphasis">
-                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                          {item.user.registered}
+                          Registered: {item.user.registered}
                         </div>
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
                       </CTableDataCell>
                       <CTableDataCell>
                         <div className="clearfix">
@@ -224,10 +256,14 @@ const Dashboard = () => {
                             <small className="text-medium-emphasis">{item.usage.period}</small>
                           </div>
                         </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
+                        <CProgress className="mb-3" height={2}>
+                          <CProgressBar color="warning" value={item.usage.value} />
+                        </CProgress>
+                        <CProgress className="mb-3" height={2}>
+                          <CProgressBar thin color="danger" value={item.usage.value} />
+                        </CProgress>
                       </CTableDataCell>
                       <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
                         <strong>{item.activity}</strong>
                       </CTableDataCell>
                     </CTableRow>
