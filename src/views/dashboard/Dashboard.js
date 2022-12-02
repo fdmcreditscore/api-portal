@@ -125,7 +125,41 @@ const Dashboard = () => {
     <>
       <CCard className="mb-4">
         <CCardHeader>
-          <h5>Balance & Usages</h5>
+          <h5>Monthly Statistic</h5>
+        </CCardHeader>
+        <CCardBody>
+          <CRow>
+            <CCol xs={4}>
+              <CWidgetStatsC
+                className="mb-3"
+                color="primary"
+                inverse
+                icon={<CIcon icon={cilChartPie} height={36} />}
+                progress={{ color: 'success', value: 75 }}
+                text="Widget helper text"
+                title="Total Request Transaction"
+                value="898"
+              />
+            </CCol>
+            <CCol xs={4}>
+              <CWidgetStatsC
+                className="mb-3"
+                color="warning"
+                inverse
+                icon={<CIcon icon={cilChartPie} height={36} />}
+                progress={{ color: 'success', value: 75 }}
+                text="Widget helper text"
+                title="Current Balance"
+                value="Rp 40.000.000"
+              />
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
+
+      <CCard className="mb-4">
+        <CCardHeader>
+          <h5>Monthly Activity per Service</h5>
         </CCardHeader>
         <CCardBody>
           <CRow>
@@ -199,19 +233,6 @@ const Dashboard = () => {
                 icon={<CIcon icon={cilChartPie} height={24} />}
                 title="Loan History API call"
                 value="0"
-              />
-            </CCol>
-          </CRow>
-          <br />
-          <CRow>
-            <CCol xs={4}>
-              <CWidgetStatsC
-                className="mb-6"
-                icon={<CIcon icon={cilChartPie} height={36} />}
-                progress={{ color: 'success', value: 75 }}
-                text="Widget helper text"
-                title="Current Balance"
-                value="Rp 40,000,000"
               />
             </CCol>
           </CRow>

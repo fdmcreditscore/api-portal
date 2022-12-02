@@ -1,7 +1,7 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilPencil, cilSpeedometer } from '@coreui/icons'
-import { CNavItem, CNavTitle } from '@coreui/react'
+import { cilPencil, cilSpeedometer, cilPuzzle } from '@coreui/icons'
+import { CNavItem, CNavGroup, CNavTitle } from '@coreui/react'
 
 const _nav = [
   {
@@ -13,6 +13,13 @@ const _nav = [
   {
     component: CNavTitle,
     name: 'API Parameter Services',
+  },
+  {
+    component: CNavGroup,
+    name: 'API data sources services',
+    to: '/base',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    items: [],
   },
   {
     component: CNavItem,

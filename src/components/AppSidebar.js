@@ -27,10 +27,10 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-none d-md-flex" to="/">
+      {/* <CSidebarBrand className="d-none d-md-flex" to="/">
         <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
         <CImage align="start" rounded src="checkyou_logo.png" width={120} height={60} />
-      </CSidebarBrand>
+      </CSidebarBrand> */}
       <CSidebarNav>
         <SimpleBar>
           <AppSidebarNav items={navigation} />
