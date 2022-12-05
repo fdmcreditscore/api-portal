@@ -60,8 +60,7 @@ const Ocr = () => {
       }),
     }
 
-    // fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
-    fetch('http://localhost:9030/middlewr/v1/api/ocr', config)
+    fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
       .then((response) => response.json())
       .then((data) => {
         setApiResponse(data)
