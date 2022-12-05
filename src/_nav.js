@@ -17,44 +17,114 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'API data sources services',
-    to: '/base',
+    to: '/ApiSource',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-    items: [],
+    items: [
+      {
+        component: CNavItem,
+        name: 'Telco Attribute',
+        to: '/pages/api-telco',
+      },
+      {
+        component: CNavItem,
+        name: 'Demography Attribute',
+        to: '/pages/api-telco',
+      },
+      {
+        component: CNavItem,
+        name: 'Social Media Info',
+        to: '/pages/api-socmed',
+      },
+      {
+        component: CNavItem,
+        name: 'Credit Card Ownership',
+        to: '/pages/api-socmed',
+      },
+      {
+        component: CNavGroup,
+        name: 'Credit/Loan History ',
+        to: '/Hist',
+        icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+        items: [
+          {
+            component: CNavItem,
+            name: 'Bank',
+            to: '/pages/api-socmed',
+          },
+          {
+            component: CNavItem,
+            name: 'Fintech',
+            to: '/pages/api-socmed',
+          },
+          {
+            component: CNavItem,
+            name: 'BPR',
+            to: '/pages/api-socmed',
+          },
+          {
+            component: CNavItem,
+            name: 'Koperasi',
+            to: '/pages/api-socmed',
+          },
+        ],
+      },
+      {
+        component: CNavGroup,
+        name: 'BPJS Info',
+        to: '/Bpjs',
+        icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+        items: [
+          {
+            component: CNavItem,
+            name: 'Worker',
+            to: '/pages/api-socmed',
+          },
+          {
+            component: CNavItem,
+            name: 'Health',
+            to: '/pages/api-socmed',
+          },
+        ],
+      },
+      {
+        component: CNavItem,
+        name: 'DJP Info',
+        to: '/pages/api-socmed',
+      },
+      {
+        component: CNavItem,
+        name: 'Married Status',
+        to: '/pages/api-socmed',
+      },
+      {
+        component: CNavItem,
+        name: 'Criminal Info',
+        to: '/pages/api-socmed',
+      },
+    ],
   },
   {
     component: CNavItem,
-    name: 'Telco API',
-    to: '/pages/api-telco',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Identity API',
+    name: 'API Photo Comparation',
     to: '/pages/api-identity',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Social Media API',
-    to: '/pages/api-socmed',
+    name: 'API OCR Service',
+    to: '/pages/api-ocr',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Credit Score API',
+    name: 'Telco Score Service',
     to: '/pages/api-credit-score',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Credit Card API',
+    name: 'Credit Score Service',
     to: '/pages/api-creditcard',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'OCR API',
-    to: '/pages/api-ocr',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
@@ -65,25 +135,9 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Loan History API',
+    name: 'Profile Population Services',
     to: '/pages/api-loan-hist',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavTitle,
-    name: 'Profile Data Service',
-  },
-  {
-    component: CNavItem,
-    name: 'Sektor UMKM',
-    to: '/pages/profiledata',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Sektor Pendidikan',
-    to: '/pages/profiledata',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -91,7 +145,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Pricing',
+    name: 'API Service Prices',
     to: '/pages/pricing',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
   },
@@ -113,28 +167,12 @@ const _nav = [
     to: '/pages/report',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavTitle,
-  //   name: 'Internal Administration',
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'New Customer',
-  //   to: '/pages/newcustomer',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'Customer List',
-  //   to: '/pages/customer-list',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
-  // {
-  //   component: CNavItem,
-  //   name: 'API Call Usage',
-  //   to: '/pages/apicall-history',
-  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  // },
+  {
+    component: CNavItem,
+    name: 'User Profile',
+    to: '/pages/report',
+    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  },
 ]
 
 export default _nav

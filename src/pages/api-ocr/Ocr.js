@@ -52,13 +52,16 @@ const Ocr = () => {
     console.log('Submitting')
     const config = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         imageKtp: fileImg.encoded,
       }),
     }
 
-    fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
+    // fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
+    fetch('http://localhost:9030/middlewr/v1/api/ocr', config)
       .then((response) => response.json())
       .then((data) => {
         setApiResponse(data)
