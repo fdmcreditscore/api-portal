@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
   CAlert,
   CButton,
@@ -12,7 +11,6 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
-  CImage,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -23,6 +21,7 @@ import { useState } from 'react'
 async function loginUser(credentials) {
   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
   return fetch(window.location.origin + '/mgmt/auth/login', {
+    // return fetch('http://localhost:9050/mgmt/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
