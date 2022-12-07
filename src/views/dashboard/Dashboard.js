@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 
 import {
   CAvatar,
@@ -42,6 +43,19 @@ import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 const Dashboard = () => {
+  const [clientInfo, setClientInfo] = useState({})
+
+  const loginInfo = JSON.parse(localStorage.getItem('cddlogin'))
+  useEffect(() => {
+    console.log('Akan quiery clientInfo: ' + loginInfo.clientId)
+    fetch(window.location.origin + '/mgmt/v1/customers/' + loginInfo.clientId)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+        setClientInfo(res)
+      })
+  }, [loginInfo.clientId])
+
   const tableExample = [
     {
       avatar: { src: avatar1, status: 'success' },
@@ -150,7 +164,7 @@ const Dashboard = () => {
                 progress={{ color: 'success', value: 75 }}
                 text="Widget helper text"
                 title="Current Balance"
-                value="Rp 40.000.000"
+                value={clientInfo.lastBalance?.toLocaleString()}
               />
             </CCol>
           </CRow>
@@ -168,7 +182,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Telco API call"
+                title="Telco API"
                 value="202"
               />
             </CCol>
@@ -177,7 +191,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Identity API call"
+                title="Identity API"
                 value="20"
               />
             </CCol>
@@ -186,7 +200,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Credit Score API call"
+                title="Credit Score API"
                 value="20"
               />
             </CCol>
@@ -195,7 +209,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Socmed API call"
+                title="Socmed API"
                 value="20"
               />
             </CCol>
@@ -204,7 +218,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Credit Card API call"
+                title="Credit Card API"
                 value="0"
               />
             </CCol>
@@ -213,7 +227,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="OCR API call"
+                title="OCR API"
                 value="0"
               />
             </CCol>
@@ -222,7 +236,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Telco Score API call"
+                title="Telco Score API"
                 value="0"
               />
             </CCol>
@@ -231,7 +245,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Loan History API call"
+                title="Loan History API"
                 value="0"
               />
             </CCol>
