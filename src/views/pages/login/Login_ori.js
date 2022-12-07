@@ -13,6 +13,7 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CImage,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
