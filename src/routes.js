@@ -21,6 +21,7 @@ const LoanHist = React.lazy(() => import('./pages/api-loan-hist/LoanHist'))
 const History = React.lazy(() => import('./pages/history/History'))
 const Pricing = React.lazy(() => import('./pages/pricing/Pricing'))
 const ProfileData = React.lazy(() => import('./pages/profile-data/ProfileData'))
+const NotReady = React.lazy(() => import('./pages/notavailable/NotReady'))
 
 const routes = [
   { path: '/webui', exact: true, name: 'Home' },
@@ -43,6 +44,7 @@ const routes = [
   { path: '/pages/history', name: 'History', element: History },
   { path: '/pages/pricing', name: 'Pricing', element: Pricing },
   { path: '/pages/profile-data', name: 'ProfileData', element: ProfileData },
+  { path: '/pages/notavailable', name: 'NotReady', element: NotReady },
 ]
 
 export default routes

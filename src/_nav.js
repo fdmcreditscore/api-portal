@@ -28,17 +28,17 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Demography Attribute',
-        to: '/pages/api-telco',
+        to: '/pages/notavailable',
       },
       {
         component: CNavItem,
         name: 'Social Media Info',
-        to: '/pages/api-socmed',
+        to: '/pages/notavailable',
       },
       {
         component: CNavItem,
         name: 'Credit Card Ownership',
-        to: '/pages/api-socmed',
+        to: '/pages/notavailable',
       },
       {
         component: CNavGroup,
@@ -49,22 +49,22 @@ const _nav = [
           {
             component: CNavItem,
             name: 'Bank',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
           {
             component: CNavItem,
             name: 'Fintech',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
           {
             component: CNavItem,
             name: 'BPR',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
           {
             component: CNavItem,
             name: 'Koperasi',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
         ],
       },
@@ -77,29 +77,29 @@ const _nav = [
           {
             component: CNavItem,
             name: 'Worker',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
           {
             component: CNavItem,
             name: 'Health',
-            to: '/pages/api-socmed',
+            to: '/pages/notavailable',
           },
         ],
       },
       {
         component: CNavItem,
         name: 'DJP Info',
-        to: '/pages/api-socmed',
+        to: '/pages/notavailable',
       },
       {
         component: CNavItem,
         name: 'Married Status',
-        to: '/pages/api-socmed',
+        to: '/pages/notavailable',
       },
       {
         component: CNavItem,
         name: 'Criminal Info',
-        to: '/pages/api-socmed',
+        to: '/pages/notavailable',
       },
     ],
   },
@@ -118,25 +118,19 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Telco Score Service',
-    to: '/pages/api-credit-score',
+    to: '/pages/notavailable',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Credit Score Service',
-    to: '/pages/api-creditcard',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Telco Score API',
-    to: '/pages/api-telco-score',
+    to: '/pages/notavailable',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Profile Population Services',
-    to: '/pages/api-loan-hist',
+    to: '/pages/notavailable',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {
@@ -158,7 +152,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'API Docs',
-    to: '/pages/apidoc',
+    to: '/pages/notavailable',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {

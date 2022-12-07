@@ -4,6 +4,8 @@ import Login from 'src/views/pages/login/Login'
 import useToken from './useToken'
 
 const DefaultLayout = () => {
+  const LoginContext = React.createContext()
+
   const { login, setLogin } = useToken()
   if (!(login === 0)) {
     return <Login setLogin={setLogin} />

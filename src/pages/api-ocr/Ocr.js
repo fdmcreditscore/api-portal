@@ -54,6 +54,8 @@ const Ocr = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'XA-ClientId': 'SUAB46906',
+        Authorization: 'Bearer ' + localStorage.getItem('accesstoken'),
       },
       body: JSON.stringify({
         imageKtp: fileImg.encoded,
@@ -61,6 +63,7 @@ const Ocr = () => {
     }
 
     fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
+      // fetch('http://localhost:9030/middlewr/v1/api/ocr', config)
       .then((response) => response.json())
       .then((data) => {
         setApiResponse(data)

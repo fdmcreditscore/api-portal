@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
   CAlert,
   CButton,
@@ -22,13 +21,28 @@ import { useState } from 'react'
 
 async function loginUser(credentials) {
   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
-  return fetch(window.location.origin + '/mgmt/auth/login', {
+  // return fetch(window.location.origin + '/mgmt/auth/login', {
+  return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(credentials),
   }).then((data) => data.json())
+}
+
+async function getAccessToken(credentials) {
+  console.log('start getaccesstoken')
+  return fetch(
+    'https://dicheck.isinovasi.com:8443/realms/hujanbadai/protocol/openid-connect/token',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: 'client_id=react-app&username=user1&password=password&grant_type=password',
+    },
+  ).then((data) => data.json())
 }
 
 const Login = ({ setLogin }) => {
@@ -44,15 +58,22 @@ const Login = ({ setLogin }) => {
     })
     setAlertVisible(login === 0 ? false : true)
     setLogin(login)
+
+    const accessToken = await getAccessToken({
+      username,
+      password,
+    })
+    console.log(accessToken)
+    localStorage.setItem('accesstoken', accessToken.access_token)
   }
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={5}>
+          <CCol md={7}>
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard className="p-5">
                 <CCardBody>
                   <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
@@ -96,25 +117,20 @@ const Login = ({ setLogin }) => {
                   </CAlert>
                 </CCardBody>
               </CCard>
-              {/* <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                <CCardBody className="text-center">
-                  <div>
-                    <CImage
-                      thumbnail
-                      src="./checkyou_logo.png"
-                      width={200}
-                      height={200}
-                      alt="preview image"
-                    />
-                    <h2>Sign up</h2>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                        Register Now!
-                      </CButton>
-                    </Link>
-                  </div>
+              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+                <CCardBody className="text-center justify-content-center">
+                  <br />
+                  <br />
+                  <br />
+                  <CImage
+                    thumbnail
+                    src="./checkyou_logo.png"
+                    width={250}
+                    height={250}
+                    alt="preview image"
+                  />
                 </CCardBody>
-              </CCard> */}
+              </CCard>
             </CCardGroup>
           </CCol>
         </CRow>
