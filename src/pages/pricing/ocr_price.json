@@ -1,0 +1,30 @@
+[
+  {
+    "no": "1",
+    "hits": "100 hits",
+    "joining_fee": "Rp1.000.000",
+    "tariff_perhits": "Rp300",
+    "tariff": "Rp30.000"
+  },
+  {
+    "no": "2",
+    "hits": "500 hits",
+    "joining_fee": "Rp1.000.000",
+    "tariff_perhits": "Rp250",
+    "tariff": "Rp125.000"
+  },
+  {
+    "no": "3",
+    "hits": "2000 hits",
+    "joining_fee": "Rp1.000.000",
+    "tariff_perhits": "Rp200",
+    "tariff": "Rp400.000"
+  },
+  {
+    "no": "4",
+    "hits": ">2000 hits",
+    "joining_fee": "Rp1.000.000",
+    "tariff_perhits": "Rp180",
+    "tariff": ""
+  }
+]

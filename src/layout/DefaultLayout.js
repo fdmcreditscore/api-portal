@@ -3,9 +3,9 @@ import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/inde
 import Login from 'src/views/pages/login/Login'
 import useToken from './useToken'
 
-const DefaultLayout = () => {
-  const LoginContext = React.createContext()
+export const LoginContext = React.createContext({ loginInfo: {} })
 
+const DefaultLayout = () => {
   const { login, setLogin } = useToken()
   if (!(login === 0)) {
     return <Login setLogin={setLogin} />

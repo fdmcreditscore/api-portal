@@ -26,7 +26,7 @@ const AppHeader = () => {
           className="ps-1"
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
         >
-          <CImage align="start" rounded src="./checkyou_logo.png" width={170} height={70} />
+          <CImage align="start" rounded src="./checkyou_logo.png" width={180} height={70} />
         </CHeaderToggler>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />

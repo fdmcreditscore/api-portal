@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  CAlert,
   CButton,
   CCard,
   CCardBody,

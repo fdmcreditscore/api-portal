@@ -21,8 +21,8 @@ import { useState } from 'react'
 
 async function loginUser(credentials) {
   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
-  // return fetch(window.location.origin + '/mgmt/auth/login', {
-  return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
+  return fetch(window.location.origin + '/mgmt/auth/login', {
+    // return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,19 +31,19 @@ async function loginUser(credentials) {
   }).then((data) => data.json())
 }
 
-async function getAccessToken(credentials) {
-  console.log('start getaccesstoken')
-  return fetch(
-    'https://dicheck.isinovasi.com:8443/realms/hujanbadai/protocol/openid-connect/token',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: 'client_id=react-app&username=user1&password=password&grant_type=password',
-    },
-  ).then((data) => data.json())
-}
+// async function getAccessToken(credentials) {
+//   console.log('start getaccesstoken')
+//   return fetch(
+//     'https://dicheck.isinovasi.com:8443/realms/hujanbadai/protocol/openid-connect/token',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//       },
+//       body: 'client_id=react-app&username=user1&password=password&grant_type=password',
+//     },
+//   ).then((data) => data.json())
+// }
 
 const Login = ({ setLogin }) => {
   const [username, setUserName] = useState()
@@ -59,12 +59,12 @@ const Login = ({ setLogin }) => {
     setAlertVisible(login === 0 ? false : true)
     setLogin(login)
 
-    const accessToken = await getAccessToken({
-      username,
-      password,
-    })
-    console.log(accessToken)
-    localStorage.setItem('accesstoken', accessToken.access_token)
+    // const accessToken = await getAccessToken({
+    //   username,
+    //   password,
+    // })
+    // console.log(accessToken)
+    // localStorage.setItem('accesstoken', accessToken.access_token)
   }
 
   return (

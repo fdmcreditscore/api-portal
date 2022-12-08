@@ -158,7 +158,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'History Report',
-    to: '/pages/report',
+    to: '/pages/history',
     icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
   },
   {

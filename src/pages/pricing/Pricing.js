@@ -14,6 +14,7 @@ import {
 } from '@coreui/react'
 import tseldata from './telkomsel_price.json'
 import isatprice from './isat_price.json'
+import ocrprice from './ocr_price.json'
 
 const Pricing = () => {
   return (
@@ -51,15 +52,6 @@ const Pricing = () => {
           </CCardBody>
         </CCard>
         <br />
-        {/* <CCard>
-          <CCardHeader>
-            <h5>Indosat API Price</h5>
-          </CCardHeader>
-          <CCardBody>
-            <CImage src="/price_indosat.png" width={1100} height={500} fluid />
-          </CCardBody>
-        </CCard>
-        <br /> */}
         <CCard>
           <CCardHeader>
             <h5>Indosat API Price</h5>
@@ -103,6 +95,38 @@ const Pricing = () => {
               Tier #4: 5,000,001 - 10,000,000 Hits/Month
               <br />
               Tier #5: 10,000,001 and above
+            </CListGroup>
+          </CCardBody>
+        </CCard>
+        <br />
+        <CCard>
+          <CCardHeader>
+            <h5>OCR API Price</h5>
+          </CCardHeader>
+          <CCardBody>
+            <CListGroup>
+              <CTable>
+                <CTableHead color="warning">
+                  <CTableRow>
+                    <CTableHeaderCell sm={2}>No</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Hits</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Joining Fee</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tariff per hits</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Tariff</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>
+                  {ocrprice.map((p) => (
+                    <CTableRow key={p.no}>
+                      <CTableDataCell>{p.no}</CTableDataCell>
+                      <CTableDataCell>{p.hits}</CTableDataCell>
+                      <CTableDataCell>{p.joining_fee}</CTableDataCell>
+                      <CTableDataCell>{p.tariff_perhits}</CTableDataCell>
+                      <CTableDataCell>{p.tariff}</CTableDataCell>
+                    </CTableRow>
+                  ))}
+                </CTableBody>
+              </CTable>
             </CListGroup>
           </CCardBody>
         </CCard>

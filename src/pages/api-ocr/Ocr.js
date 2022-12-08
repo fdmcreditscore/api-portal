@@ -16,6 +16,7 @@ import {
   CImage,
   CSpinner,
 } from '@coreui/react'
+import { LoginContext } from '../../layout/DefaultLayout'
 
 const Ocr = () => {
   const [onProgress, setOnProgress] = useState(false)
@@ -50,12 +51,13 @@ const Ocr = () => {
     }
     setOnProgress(true)
     console.log('Submitting')
+    let cddlogin = JSON.parse(localStorage.getItem('cddlogin'))
     const config = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'XA-ClientId': 'SUAB46906',
-        Authorization: 'Bearer ' + localStorage.getItem('accesstoken'),
+        Authorization: 'Bearer ' + cddlogin.accessToken,
       },
       body: JSON.stringify({
         imageKtp: fileImg.encoded,
