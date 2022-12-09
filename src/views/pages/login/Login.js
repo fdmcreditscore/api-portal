@@ -18,53 +18,55 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import axios from 'axios'
 
-async function loginUser(credentials) {
-  console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
-  return fetch(window.location.origin + '/mgmt/auth/login', {
-    // return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json())
-}
+const baseURL = window.location.origin + '/mgmt/auth/login'
 
-// async function getAccessToken(credentials) {
-//   console.log('start getaccesstoken')
-//   return fetch(
-//     'https://dicheck.isinovasi.com:8443/realms/hujanbadai/protocol/openid-connect/token',
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       body: 'client_id=react-app&username=user1&password=password&grant_type=password',
+// async function loginUser(credentials) {
+//   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
+//   return fetch(window.location.origin + '/mgmt/auth/login', {
+//     // return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
 //     },
-//   ).then((data) => data.json())
+//     body: JSON.stringify(credentials),
+//   }).then((data) => data.json())
 // }
 
 const Login = ({ setLogin }) => {
   const [username, setUserName] = useState()
   const [password, setPassword] = useState()
-  const [alertVisible, setAlertVisible] = useState(false)
+  const [alertVisible, setAlertVisible] = useState(true)
+  const [errMsg, setErrMsg] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const login = await loginUser({
-      username,
-      password,
-    })
-    setAlertVisible(login === 0 ? false : true)
-    setLogin(login)
-
-    // const accessToken = await getAccessToken({
+    // const login = await loginUser({
     //   username,
     //   password,
     // })
-    // console.log(accessToken)
-    // localStorage.setItem('accesstoken', accessToken.access_token)
+    axios
+      .post(baseURL, { username, password })
+      .then((response) => {
+        setLogin(response.data)
+      })
+      .catch((error) => {
+        if (!error?.response) {
+          setErrMsg('No Server Response')
+        } else if (error.response?.status === 400) {
+          setErrMsg('Missing Username or Password')
+        } else if (error.response?.status === 401) {
+          setErrMsg('Unauthorized')
+        } else if (error.response?.status === 404) {
+          setErrMsg('Service not available')
+        } else {
+          console.log(error.response)
+          setErrMsg('Login Failed')
+        }
+      })
+    // setAlertVisible(login === 0 ? false : true)
+    // setLogin(login)
   }
 
   return (
@@ -112,8 +114,8 @@ const Login = ({ setLogin }) => {
                       </CCol>
                     </CRow>
                   </CForm>
-                  <CAlert color="warning" visible={alertVisible}>
-                    User/password is not registered
+                  <CAlert color="danger" visible={errMsg !== null}>
+                    {errMsg}
                   </CAlert>
                 </CCardBody>
               </CCard>
