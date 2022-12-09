@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useContext } from 'react'
 import {
   CAlert,
   CButton,
@@ -18,6 +18,7 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
+import AuthContext from '../../../context/AuthProvider'
 
 async function loginUser(credentials) {
   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
@@ -46,9 +47,17 @@ async function loginUser(credentials) {
 // }
 
 const Login = ({ setLogin }) => {
-  const [username, setUserName] = useState()
-  const [password, setPassword] = useState()
+  // const userRef = useRef()
+  const { setAuth } = useContext(AuthContext)
+
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  // const [errMsg, setErrMsg] = useState('')
   const [alertVisible, setAlertVisible] = useState(false)
+
+  // useEffect(() => {
+  //   userRef.current.focus()
+  // })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
