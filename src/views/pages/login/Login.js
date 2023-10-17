@@ -1,8 +1,9 @@
-import React, { useRef, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import {
   CAlert,
   CButton,
   CCard,
+  CCardImage,
   CCardBody,
   CCardGroup,
   CCol,
@@ -11,53 +12,35 @@ import {
   CFormInput,
   CInputGroup,
   CInputGroupText,
-  CImage,
   CRow,
+  CSpinner,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import AuthContext from '../../../context/AuthProvider'
 import axios from 'axios'
 
 const baseURL = window.location.origin + '/mgmt/auth/login'
-
-// async function loginUser(credentials) {
-//   console.log('login ke : ' + window.location.origin + '/mgmt/auth/login')
-//   return fetch(window.location.origin + '/mgmt/auth/login', {
-//     // return fetch('http://dicheck.isinovasi.com:9050/mgmt/auth/login', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(credentials),
-//   }).then((data) => data.json())
-// }
+// const baseURL = 'http://localhost:9050/mgmt/auth/login'
 
 const Login = ({ setLogin }) => {
-  // const userRef = useRef()
   const { setAuth } = useContext(AuthContext)
-
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
-  // const [errMsg, setErrMsg] = useState('')
-  const [alertVisible, setAlertVisible] = useState(false)
-
-  // useEffect(() => {
-  //   userRef.current.focus()
-  // })
+  const [errMsg, setErrMsg] = useState(null)
+  const [onProgress, setOnProgress] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // const login = await loginUser({
-    //   username,
-    //   password,
-    // })
+    setOnProgress(true)
     axios
-      .post(baseURL, { username, password })
+      .post(baseURL, { username, password }, { withCredentials: true })
       .then((response) => {
+        const logInfo = response?.data
         setLogin(response.data)
+        setAuth({ logInfo })
+        setOnProgress(false)
       })
       .catch((error) => {
         if (!error?.response) {
@@ -71,23 +54,33 @@ const Login = ({ setLogin }) => {
         } else {
           console.log(error.response)
           setErrMsg('Login Failed')
+          setOnProgress(false)
         }
       })
-    // setAlertVisible(login === 0 ? false : true)
-    // setLogin(login)
   }
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={7}>
+          <CCol md={4}>
             <CCardGroup>
-              <CCard className="p-5">
+              <CCard className="p-4">
+                <CCardImage orientation="top" src="./checkyou_logo.png" />
                 <CCardBody>
                   <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
+                    {/* <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cilUser} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="SUAB46906"
+                        disabled
+                        onChange={(e) => setClient(e.target.value)}
+                      />
+                    </CInputGroup> */}
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
@@ -114,6 +107,7 @@ const Login = ({ setLogin }) => {
                         <CButton type="submit" color="primary" className="px-4">
                           Login
                         </CButton>
+                        {onProgress && <CSpinner color="success" />}
                       </CCol>
                       <CCol xs={6} className="text-right">
                         <CButton color="link" className="px-0">
@@ -127,7 +121,7 @@ const Login = ({ setLogin }) => {
                   </CAlert>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              {/* <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center justify-content-center">
                   <br />
                   <br />
@@ -140,7 +134,7 @@ const Login = ({ setLogin }) => {
                     alt="preview image"
                   />
                 </CCardBody>
-              </CCard>
+              </CCard> */}
             </CCardGroup>
           </CCol>
         </CRow>

@@ -86,15 +86,17 @@ const Pricing = () => {
                   ))}
                 </CTableBody>
               </CTable>
-              Tier #1: 10,000 - 50,000 Hits/Month
-              <br />
-              Tier #2: 50,001 - 1,000,000 Hits/Month
-              <br />
-              Tier #3: 1,000,001 - 5,000,000 Hits/Month
-              <br />
-              Tier #4: 5,000,001 - 10,000,000 Hits/Month
-              <br />
-              Tier #5: 10,000,001 and above
+              <p className="text-medium-emphasis small">
+                Tier #1: 10,000 - 50,000 Hits/Month
+                <br />
+                Tier #2: 50,001 - 1,000,000 Hits/Month
+                <br />
+                Tier #3: 1,000,001 - 5,000,000 Hits/Month
+                <br />
+                Tier #4: 5,000,001 - 10,000,000 Hits/Month
+                <br />
+                Tier #5: 10,000,001 and above
+              </p>
             </CListGroup>
           </CCardBody>
         </CCard>

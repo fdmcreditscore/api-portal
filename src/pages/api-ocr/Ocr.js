@@ -16,14 +16,15 @@ import {
   CImage,
   CSpinner,
 } from '@coreui/react'
-import { LoginContext } from '../../layout/DefaultLayout'
+import axios from 'axios'
+import ApiResponse from 'src/components/api-response/ApiResponse'
 
 const Ocr = () => {
   const [onProgress, setOnProgress] = useState(false)
   const [apiResponse, setApiResponse] = useState()
   const [idFormFormat, setIdFormFormat] = useState(true)
   const [withResult, setWithResult] = useState(false)
-
+  const [errMsg, setErrMsg] = useState()
   const [fileImg, setFileImg] = useState({})
 
   const handleResultFormat = () => {
@@ -43,37 +44,91 @@ const Ocr = () => {
     reader.readAsDataURL(e.target.files[0])
   }
 
+  const ocrClient = axios.create({
+    baseUrl: window.location.origin,
+  })
+
+  ocrClient.interceptors.request.use(
+    async (config) => {
+      let accesstoken = JSON.parse(localStorage.getItem('accesstoken'))
+      const currentDate = new Date()
+      console.log(`Interceptor now ${currentDate.getTime()} vs ${accesstoken.expires_at}`)
+      if (currentDate.getTime() > accesstoken.expires_at) {
+        const promise = await axios.get(window.location.origin + '/mgmt/auth/refresh')
+        console.log('intercept: ' + promise.data)
+        config.headers.Authorization = `Bearer ${promise.data.access_token}`
+        let expires_at = new Date().getTime() + (promise.data.expires_in - 3) * 1000
+        let accesstoken = { access_token: promise.data.access_token, expires_at: expires_at }
+        localStorage.setItem('accesstoken', JSON.stringify(accesstoken))
+      }
+      return config
+    },
+    (error) => {
+      console.log('error on intercept.request')
+      setErrMsg('Unauthorized')
+      return Promise.reject(error)
+    },
+  )
+
+  ocrClient.interceptors.response.use(
+    function (response) {
+      if (response.data) {
+        if (response.status === 200 || response.status === 201) {
+          return response
+        }
+        // reject errors &
+        console.log('450 reject response')
+        return Promise.reject(response)
+      }
+      console.log('550 reject response')
+      return Promise.reject(response)
+    },
+    function (error) {
+      console.log('client interceptor -> error')
+      localStorage.removeItem('cddlogin')
+      setErrMsg('Unauthorized')
+      return Promise.reject(error)
+      // return <Navigate replace to="/login" />
+    },
+  )
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
+    setOnProgress(true)
+    setWithResult(false)
+    setErrMsg()
     if (!(fileImg && fileImg.encoded)) {
       alert('File image belum diupload')
       return
     }
-    setOnProgress(true)
     console.log('Submitting')
     let cddlogin = JSON.parse(localStorage.getItem('cddlogin'))
-    const config = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'XA-ClientId': 'SUAB46906',
-        Authorization: 'Bearer ' + cddlogin.accessToken,
-      },
-      body: JSON.stringify({
-        imageKtp: fileImg.encoded,
-      }),
-    }
 
-    fetch(window.location.origin + '/middlewr/v1/api/ocr', config)
-      // fetch('http://localhost:9030/middlewr/v1/api/ocr', config)
-      .then((response) => response.json())
-      .then((data) => {
-        setApiResponse(data)
+    const headers = {
+      'Content-Type': 'application/json',
+      'XA-ClientId': 'SUAB46906',
+      Authorization: 'Bearer ' + cddlogin.accessToken,
+    }
+    ocrClient
+      .post('/middlewr/v1/api/ocr', { imageKtp: fileImg.encoded }, { headers: headers })
+      .then((response) => {
+        setApiResponse(response?.data)
         setWithResult(true)
         setOnProgress(false)
       })
-      .catch((err) => {
-        console.log(err.message)
+      .catch((error) => {
+        console.log('error 2: ' + error)
+        if (!error?.response) {
+          setErrMsg('No Server Response')
+        } else if (error.response?.status === 401) {
+          setErrMsg('Unauthorized')
+        } else if (error.response?.status === 404) {
+          setErrMsg('Service not available')
+        } else {
+          console.log(error.response)
+          setErrMsg('API call Failed')
+        }
+        setOnProgress(false)
       })
   }
 
@@ -110,6 +165,16 @@ const Ocr = () => {
           </CCol>
         </CRow>
       </CForm>
+      {errMsg && (
+        <CListGroup>
+          <CListGroupItem color="info">
+            <div className="d-flex w-100 justify-content-between">
+              <h5 className="mb-1">Error</h5>
+              <pre>{errMsg}</pre>
+            </div>
+          </CListGroupItem>
+        </CListGroup>
+      )}
       {withResult && (
         <CListGroup>
           <CListGroupItem color="info">

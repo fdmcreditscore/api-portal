@@ -173,7 +173,7 @@ const Dashboard = () => {
 
       <CCard className="mb-4">
         <CCardHeader>
-          <h5>Monthly Activity per Service</h5>
+          <h5>Monthly Activity (Transaction) per Service</h5>
         </CCardHeader>
         <CCardBody>
           <CRow>
@@ -182,7 +182,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Telco API"
+                title="Telco Attribute"
                 value="202"
               />
             </CCol>
@@ -191,7 +191,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Identity API"
+                title="Demography Attribute"
                 value="20"
               />
             </CCol>
@@ -200,7 +200,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Credit Score API"
+                title="Marital Status"
                 value="20"
               />
             </CCol>
@@ -209,7 +209,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Socmed API"
+                title="Socmed Info"
                 value="20"
               />
             </CCol>
@@ -218,7 +218,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="primary"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="Credit Card API"
+                title="Credit Card Ownership"
                 value="0"
               />
             </CCol>
@@ -227,7 +227,7 @@ const Dashboard = () => {
                 className="mb-3"
                 color="warning"
                 icon={<CIcon icon={cilChartPie} height={24} />}
-                title="OCR API"
+                title="OCR Service"
                 value="0"
               />
             </CCol>

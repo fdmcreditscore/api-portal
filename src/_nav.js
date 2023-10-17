@@ -16,7 +16,7 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'API data sources services',
+    name: 'API Datasource Services',
     to: '/ApiSource',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
     items: [
@@ -93,7 +93,7 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'Married Status',
+        name: 'Marital Status',
         to: '/pages/notavailable',
       },
       {
